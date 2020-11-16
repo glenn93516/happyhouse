@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/qna")
@@ -18,6 +19,9 @@ public class QnaBoardController {
 
     @GetMapping("/list/{page}")
     public QnaBoardPageDto getList(@PathVariable("page") int page){
+        QnaBoardPageDto list = qnaBoardService.getPage(page);
+        System.out.println(list);
+
         return qnaBoardService.getPage(page);
     }
 
