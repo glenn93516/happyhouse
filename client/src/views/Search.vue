@@ -42,7 +42,7 @@ export default {
     return {
       boards: [],
       searchCondition: '',
-      isSearch: false,
+      isSearch: true,
     };
   },
   methods: {

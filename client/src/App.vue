@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1><span style="color:black">HappyHouse</span> QnA</h1>
+      <h1 style="font-weight:bold;"><span style="color:#42b983">HappyHouse</span> QnA</h1>
+      <hr/>
       <router-link to="/search">글목록</router-link>
       <router-link to="/write">글쓰기</router-link> 
     </div>
