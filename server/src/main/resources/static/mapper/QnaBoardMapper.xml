@@ -23,7 +23,7 @@
         FROM qna_board q
         LEFT JOIN qna_reply r
         ON q.qna_id = r.qna_board_id
-        WHERE qnaId=#{qnaId}
+        WHERE q.qna_id=#{qnaId}
     </select>
 
     <insert id="insertOne" parameterType="QnaBoardDto">
