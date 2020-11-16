@@ -52,4 +52,13 @@ TODO: 요구사항 목록에서 완료 처리된 사항의 캡쳐 이미지를 �
 ![메인화면](./화면캡쳐/화면캡쳐_0001_주택정보_web.png)
 
 구현 기능: 전체 프로그램 동작/오류 없이 전체 동작 1
-![실행화면캡쳐](./화면캡쳐/화면캡쳐_Main화면_web.png)
+![main](img/main.png)
+![qna_list](img/qna_list.png)
+![qna_list_search](img/qna_list_search.png)
+![qna_detail](img/qna_detail.png)
+![qna_write](img/qna_write.png)
+![qna_write_success](img/qna_write_success.png)
+![qna_list_after_write](img/qna_list_after_write.png)
+
+
+
