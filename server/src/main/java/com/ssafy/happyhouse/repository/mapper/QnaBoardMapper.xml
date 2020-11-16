@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.repository.mapper.QnaBoardMapper">
+    <select id="selectTotalCount" resultType="int">
+        SELECT COUNT(*) FROM qna_board;
+    </select>
+
+    <select id="selectPage" resultType="QnaBoardMap">
+        SELECT
+            q.qna_id qnaId, q.qna_title qnaTitle, q.qna_writer qnaWriter, q.qna_content qnaContent, q.qna_writedate qnaWriteDate, q.qna_type qnaType,
+            r.qna_reply_id qnaReplyId, r.qna_reply_writer qnaReplyWriter, r.qna_reply_content qnaReplyContent, r.qna_reply_writedate qnaReplyWriteDate
+        FROM qna_board q, qna_reply r
+        WHERE q.qna_id = r.qna_board_id
+        ORDER BY qna_id
+        LIMIT #{startRow}, #{COUNT_PER_PAGE}
+    </select>
+
+    <select id="selectOne" resultMap="QnaBoardMap">
+        SELECT
+            q.qna_id qnaId, q.qna_title qnaTitle, q.qna_writer qnaWriter, q.qna_content qnaContent, q.qna_writedate qnaWriteDate, q.qna_type qnaType,
+            r.qna_reply_id qnaReplyId, r.qna_reply_writer qnaReplyWriter, r.qna_reply_content qnaReplyContent, r.qna_reply_writedate qnaReplyWriteDate
+        FROM qna_board q, qna_reply r
+        WHERE q.qna_id = r.qna_board_id
+            AND qnaId=#{qnaId}
+    </select>
+
+    <insert id="insertOne" parameterType="QnaBoardDto">
+        INSERT INTO qna_board (qna_title, qna_writer, qna_content, qna_writedate, qna_type)
+        VALUES (#{qnaTitle}, #{qnaWriter}, #{qnaContent}, CURRENT_DATE(), #{qnaType})
+    </insert>
+
+    <update id="updateOne" parameterType="QnaBoardDto">
+        UPDATE qna_board SET qna_title=#{qnaTitle}, qna_content=#{qnaContent}, qna_writedate=CURRENT_DATE()
+        WHERE qna_id=#{qnaId}
+    </update>
+
+    <delete id="deleteOne">
+        DELETE FROM qna_board
+        WHERE qna_id=#{qnaId}
+    </delete>
+
+    <resultMap id="QnaBoardMap" type="QnaBoardDto">
+        <result property="qnaId" column="qnaId"/>
+        <result property="qnaTitle" column="qnaTitle"/>
+        <result property="qnaWriter" column="qnaWriter"/>
+        <result property="qnaContent" column="qnaContent"/>
+        <result property="qnaWriteDate" column="qnaWriteDate"/>
+        <result property="qnaType" column="qnaType"/>
+        <association property="qnaReplyDto" column="qnaReplyId" javaType="QnaReplyDto" resultMap="QnaReplyMap"/>
+    </resultMap>
+
+    <resultMap id="QnaReplyMap" type="QnaReplyDto">
+        <result property="qnaReplyId" column="qnaReplyId"/>
+        <result property="qnaReplyWriter" column="qnaReplyWriter"/>
+        <result property="qnaReplyContent" column="qnaReplyContent"/>
+        <result property="qnaReplyWriteDate" column="qnaReplyWriteDate"/>
+    </resultMap>
+</mapper>

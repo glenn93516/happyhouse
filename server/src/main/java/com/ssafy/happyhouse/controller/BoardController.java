@@ -1,6 +1,5 @@
 package com.ssafy.happyhouse.controller;
 
-import com.ssafy.happyhouse.repository.dto.MemberDto;
 import com.ssafy.happyhouse.repository.dto.NoticeDto;
 import com.ssafy.happyhouse.repository.dto.NoticePageDto;
 import com.ssafy.happyhouse.service.BoardService;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
