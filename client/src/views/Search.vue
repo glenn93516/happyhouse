@@ -21,12 +21,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="board in titleCheck" :key="board.qna_id">
-            <td>{{ board.qna_id }}</td>
-            <td>{{ board.qna_title }}</td>
-            <td>{{ board.qna_writer }}</td>
-            <td>{{ board.qna_writedate }}</td>
-            <td>{{ board.qna_type }}</td>
+          <tr v-for="board in titleCheck" :key="board.qnaId">
+            <td>{{ board.qnaId }}</td>
+            <td>{{ board.qnaTitle }}</td>
+            <td>{{ board.qnaWriter }}</td>
+            <td>{{ board.qnaWriteDate }}</td>
+            <td>{{ board.qnaType }}</td>
           </tr>
         </tbody>
       </table>
@@ -54,18 +54,18 @@ export default {
   computed: {
     titleCheck() {
       return this.boards.filter((board) => {
-        return board.qna_title.includes(this.searchCondition);
+        return board.qnaTitle.includes(this.searchCondition);
       });
     },
   },
   created() {
     axios
       .get(
-        'http://localhost:8097/happyhouse/qna/search',
+        'http://localhost:8097/happyhouse/qna/list/1',
         this.searchCondition
       )
       .then((response) => {
-        this.boards = response.data;
+        this.boards = response.data.qnaBoardList;
       })
       .catch()
       .finally();
