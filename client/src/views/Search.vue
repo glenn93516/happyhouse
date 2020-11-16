@@ -23,7 +23,7 @@
         <tbody>
           <tr v-for="board in titleCheck" :key="board.qnaId">
             <td>{{ board.qnaId }}</td>
-            <td>{{ board.qnaTitle }}</td>
+            <td><router-link :to="'/search/' + board.qnaId">{{ board.qnaTitle }}</router-link></td>
             <td>{{ board.qnaWriter }}</td>
             <td>{{ board.qnaWriteDate }}</td>
             <td>{{ board.qnaType }}</td>
@@ -42,7 +42,7 @@ export default {
     return {
       boards: [],
       searchCondition: '',
-      isSearch: false,
+      isSearch: true,
     };
   },
   methods: {
