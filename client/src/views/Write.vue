@@ -4,12 +4,12 @@
       <table style="width:70%;">
         <tr>
           <td>제목</td>
-          <td><b-form-input v-model="qnaTitle" type="text" /></td>
+          <td><b-form-input v-model="board.qnaTitle" type="text" /></td>
         </tr>
         <tr>
           <td>문의유형</td>
           <td>
-            <b-form-select v-model="qnaType">
+            <b-form-select v-model="board.qnaType">
               <option value="1">회원정보</option>
               <option value="2">매물등록</option>
               <option value="3">허위매물신고</option>
@@ -19,7 +19,7 @@
         </tr>
         <tr>
           <td>내용</td>
-          <td><b-form-input style="height:200px;" v-model="qnaContent" type="text" /></td>
+          <td><b-form-input style="height:200px;" v-model="board.qnaContent" type="text" /></td>
         </tr>
       </table>
     </div>
@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     add() {
+      console.log(this.board);
       axios
         .post('http://localhost:8097/happyhouse/qna/add', this.board)
         .then((response) => {
