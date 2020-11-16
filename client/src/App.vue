@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <h1><span style="color:black">HappyHouse</span> QnA</h1>
+      <router-link to="/search">글목록</router-link>
+      <router-link to="/write">글쓰기</router-link> 
     </div>
     <router-view />
   </div>
