@@ -46,20 +46,54 @@
 </span>
 
 ### 실행화면 캡쳐 - 
-TODO: 요구사항 목록에서 완료 처리된 사항의 캡쳐 이미지를 등록하세요.
 
-구현 기능: Spring (Controller, Model(Dao, Service, Dto)
+> 구현 기능: Spring (Controller, Model(Dao, Service, Dto)
+1. 메인페이지
 ![mainpage](img/mainpage.png)
+
+2. 로그인
 ![login](img/login.png)
+
+3. 회원가입
 ![join](img/join.png)
 
-구현 기능: 전체 프로그램 동작/오류 없이 전체 동작 1
+4. SearchController
+![searchcontroller](img/searchcontroller.PNG)
+
+5. MemberController
+![searchcontroller](img/membercontroller1.PNG)
+![searchcontroller](img/membercontroller2.PNG)
+![searchcontroller](img/membercontroller3.PNG)
+
+6. MapController
+![mapcontroller](img/mapcontroller.PNG)
+
+7. BoardController
+![boardcontroller](img/boardcontroller1.PNG)
+![boardcontroller](img/boardcontroller2.PNG)
+
+
+> 구현 기능: 전체 프로그램 동작/오류 없이 전체 동작 1
+
+1. 메인페이지
 ![main](img/main.png)
+
+2. QnA 리스트
 ![qna_list](img/qna_list.png)
+
+3. QnA 리스트(검색 후)
 ![qna_list_search](img/qna_list_search.png)
+
+4. QnA 상세보기
 ![qna_detail](img/qna_detail.png)
+
+5. QnA 작성
 ![qna_write](img/qna_write.png)
+
+6. QnA 작성 성공 메세지
 ![qna_write_success](img/qna_write_success.png)
+
+7. QnA 작성후 리스트
 ![qna_list_after_write](img/qna_list_after_write.png)
 
 
