@@ -49,7 +49,9 @@
 TODO: 요구사항 목록에서 완료 처리된 사항의 캡쳐 이미지를 등록하세요.
 
 구현 기능: Spring (Controller, Model(Dao, Service, Dto)
-![메인화면](./화면캡쳐/화면캡쳐_0001_주택정보_web.png)
+![mainpage](img/mainpage.png)
+![login](img/login.png)
+![join](img/join.png)
 
 구현 기능: 전체 프로그램 동작/오류 없이 전체 동작 1
 ![main](img/main.png)
