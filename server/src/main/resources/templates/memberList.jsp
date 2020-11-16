@@ -1,0 +1,109 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>회원 검색</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/5d2954c3f8.js"
+	crossorigin="anonymous"></script>
+<!--CSS-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<!--JS -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--web font-->
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+	<jsp:include page="header.jsp" />
+
+	<!--content-->
+	<div class="container text-center col-lg-12">
+		<h2 class="pt-5 py-4"">회원 검색</h2>
+		<!--contents-->
+		<div class="container my-3">
+			<form role="form" method="get">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th width="5%">번호</th>
+							<th width="15%">아이디</th>
+							<th width="15%" class="text-center">이름</th>
+							<th width="35%">이메일</th>
+							<th width="20%">전화번호</th>
+							<th width="15%">등급</th>
+						</tr>
+					</thead>
+					<c:choose>
+						<c:when test="${empty memberList}">
+							<tr>
+								<td colspan="5">가입된 회원이 없습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${memberList}" var="dto" varStatus="varStatus">
+								<tr>
+									<td>${varStatus.count}</td>
+									<td>${dto.userid}</td>
+									<td>${dto.username}</a></td>
+									<td>${dto.useremail}</td>
+									<td>${dto.userphone}</td>
+									<c:if test="${dto.roll eq 1}">
+										<td>관리자</td>
+									</c:if>
+									<c:if test="${dto.roll eq 0}">
+										<td>일반회원</td>
+									</c:if>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</table>
+			</form>
+		</div>
+	</div>
+
+
+	<!--modal-->
+	<div class="modal" id="delete">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header justify-content-center">
+					<h4 class="modal-title">탈퇴하기</h4>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body text-center">
+					<p>정말 탈퇴하시겠습니까?</p>
+					<button class="btn btn-outline-primary"
+						onclick="location.href='${root}/member.do?action=delete&userid=${loginInfo.userid}'">확인</button>
+					<button class="btn btn-danger" data-dismiss="modal">취소</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!--modal-->
+	<!--content-->
+
+	<!-- Footer -->
+	<jsp:include page="footer.jsp" />
+</body>

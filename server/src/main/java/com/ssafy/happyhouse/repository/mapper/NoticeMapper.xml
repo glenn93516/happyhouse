@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.repository.mapper.NoticeMapper">
+    <select id="selectTotalCount" resultType="int">
+        SELECT COUNT(*) FROM noticeboard;
+    </select>
+
+    <select id="selectPage" resultType="NoticePageDto">
+        SELECT * FROM noticeboard
+        ORDER BY bnum
+        LIMIT #{startRow}, #{COUNT_PER_PAGE}
+    </select>
+
+    <select id="read" resultType="NoticeDto">
+        SELECT bnum, btitle, userid, bread_cnt, bwritedate, bcontent
+        FROM noticeboard
+        WHERE bnum=#{bnum}
+    </select>
+
+    <select id="searchTitle" resultType="NoticeDto">
+        SELECT * FROM noticeboard
+        WHERE btitle LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <select id="searchContent" resultType="NoticeDto">
+        SELECT * FROM noticeboard
+        WHERE bcontent LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <select id="searchWriter" resultType="NoticeDto">
+        SELECT * FROM noticeboard
+        WHERE userid LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <insert id="write" parameterType="NoticeDto">
+        INSERT INTO noticeboard (btitle, userid, bread_cnt, bwritedate, bcontent)
+        VALUES (#{btitle}, #{userid}, #{bread_cnt}, CURRENT_DATE(), #{bcontent})
+    </insert>
+
+    <update id="updateReadCnt">
+        UPDATE noticeboard
+        SET bread_cnt = bread_cnt + 1 WHERE bnum=#{bnum}
+    </update>
+
+    <update id="update" parameterType="NoticeDto">
+        UPDATE noticeboard SET btitle=#{btitle}, bcontent=#{bcontent}, bwritedate=CURRENT_DATE()
+        WHERE bnum=#{bnum}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM noticeboard
+        WHERE bnum=#{bnum}
+    </delete>
+
+</mapper>

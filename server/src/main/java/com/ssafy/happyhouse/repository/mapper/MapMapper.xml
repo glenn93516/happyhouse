@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.repository.mapper.MapMapper">
+    <select id="selectSido" resultType="SidoGugunCodeDto">
+        SELECT left(sido_code, 2) sidoCode, sido_name sidoName
+        FROM sidocode
+    </select>
+    <select id="selectGugun" resultType="SidoGugunCodeDto">
+        SELECT left(gugun_code, 5) gugunCode, gugun_name gugunName
+        FROM guguncode
+        WHERE left(gugun_code, 2) = #{sido}
+        ORDER BY gugunCode
+    </select>
+    <select id="selectDong" resultType="SidoGugunCodeDto">
+        SELECT dongcode dongCode, dong dongName
+        FROM dongcode
+        WHERE left(dongCode,5)=#{gugun}
+        ORDER BY dongName
+    </select>
+
+    <select id="selectCovidTestCenter" resultType="CovidTestCenterDto">
+        SELECT valid_date, city, gugun, hospital_name, address, phone, week_time, saturday_time, holiday_time
+        FROM coivdtestcenter
+        WHERE (city, gugun) IN (
+            SELECT DISTINCT LEFT(city, 2), gugun
+            FROM baseaddress
+            WHERE dongcode = #{dongcode}
+        )
+    </select>
+
+    <select id="selectSafetyHospital" resultType="SafetyHospitalDto">
+        SELECT valid_date, city, gugun, hospital_name, address, diagnosis_type, phone
+        FROM safetyhospital
+        WHERE (city, gugun) IN (
+            SELECT DISTINCT LEFT(city, 2), gugun
+            FROM baseaddress
+            WHERE dongcode = #{dongcode}
+        )
+    </select>
+
+    <select id="selectConvenience" resultMap="StoreMap">
+        SELECT store_num, store_name, store_type, store_address, store_lat, store_lng, s.dongcode dongcode, b.dongcode ba_dongcode, b.city, b.gugun, b.dong, b.lat, b.lng
+        FROM store s, baseaddress b
+        WHERE s.dongcode=#{dongcode} AND s.dongcode=b.dongcode
+    </select>
+
+    <resultMap id="StoreMap" type="StoreDto">
+        <result property="storeNum" column="store_num"/>
+        <result property="storeName" column="store_name"/>
+        <result property="storeType" column="store_type"/>
+        <result property="storeAddress" column="store_address"/>
+        <result property="storeLat" column="store_lat"/>
+        <result property="storeLng" column="store_lng"/>
+        <association property="baseAddress" column="dongcode" javaType="BaseAddressDto" resultMap="baseAddressMap"/>
+    </resultMap>
+
+    <resultMap id="baseAddressMap" type="BaseAddressDto">
+        <result property="dongcode" column="dongcode"/>
+        <result property="city" column="city"/>
+        <result property="gugun" column="gugun"/>
+        <result property="dong" column="ba_dong"/>
+        <result property="lat" column="ba_lat"/>
+        <result property="lng" column="ba_lng"/>
+    </resultMap>
+</mapper>
