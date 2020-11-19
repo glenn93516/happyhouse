@@ -11,11 +11,11 @@ import java.util.Map;
 @Service
 public class MemberServiceImpl implements MemberService {
     @Autowired
-    private SqlSession sqlSession;
+    private MemberMapper memberMapper;
 
     @Override
     public MemberDto loginCheck(String id, String pw) {
-        return sqlSession.getMapper(MemberMapper.class).checkUser(id, pw);
+        return memberMapper.checkUser(id, pw);
     }
 
     @Override
@@ -27,10 +27,7 @@ public class MemberServiceImpl implements MemberService {
         String userphone = paramMap.get("phone");
 
         MemberDto member = new MemberDto(userid, userpw, username, useremail, userphone);
-        if(sqlSession.getMapper(MemberMapper.class).insertOne(member) == 1){
-            return true;
-        }
-        return false;
+        return memberMapper.insertOne(member) == 1;
     }
 
     @Override
@@ -43,23 +40,17 @@ public class MemberServiceImpl implements MemberService {
 
         MemberDto member = new MemberDto(userid, userpw, username, useremail, userphone);
 
-        if(sqlSession.getMapper(MemberMapper.class).updateOne(member) == 1){
-            return true;
-        }
-        return false;
+        return memberMapper.updateOne(member) == 1;
     }
 
     @Override
     public boolean delete(String userid) {
-        if(sqlSession.getMapper(MemberMapper.class).delete(userid) == 1){
-            return true;
-        }
-        return false;
+        return memberMapper.delete(userid) == 1;
     }
 
     @Override
     public MemberDto findUser(String userId, String userPw, String userPhone) {
-        return sqlSession.getMapper(MemberMapper.class).selectUser(userId, userPw, userPhone);
+        return memberMapper.selectUser(userId, userPw, userPhone);
     }
 
     @Override
@@ -71,8 +62,6 @@ public class MemberServiceImpl implements MemberService {
         member.setUserid(userid);
         member.setUserpw(userpw);
 
-        if(sqlSession.getMapper(MemberMapper.class).updateUser(member) == 1)
-            return true;
-        return false;
+        return memberMapper.updateUser(member) == 1;
     }
 }

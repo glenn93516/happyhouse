@@ -26,7 +26,7 @@ public class MapController {
         return mapService.getSido();
     }
 
-    @GetMapping(value="/gugun/{sido}", produces = "applicatoin/json; charset=utf8")
+    @GetMapping(value="/gugun/{sido}", produces = "application/json; charset=utf8")
     public List<SidoGugunCodeDto> getGugun(@PathVariable("sido") String sido){
         return mapService.getGugun(sido);
     }

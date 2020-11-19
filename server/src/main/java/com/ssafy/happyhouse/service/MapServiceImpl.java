@@ -14,35 +14,35 @@ import java.util.List;
 @Service
 public class MapServiceImpl implements MapService {
     @Autowired
-    private SqlSession sqlSession;
+    private MapMapper mapMapper;
 
     @Override
     public List<SidoGugunCodeDto> getSido() {
-        return sqlSession.getMapper(MapMapper.class).selectSido();
+        return mapMapper.selectSido();
     }
 
     @Override
     public List<SidoGugunCodeDto> getGugun(String sido) {
-        return sqlSession.getMapper(MapMapper.class).selectGugun(sido);
+        return mapMapper.selectGugun(sido);
     }
 
     @Override
     public List<SidoGugunCodeDto> getDong(String gugun) {
-        return sqlSession.getMapper(MapMapper.class).selectDong(gugun);
+        return mapMapper.selectDong(gugun);
     }
 
     @Override
     public List<CovidTestCenterDto> getCovidTestCenterList(String dongcode) {
-        return sqlSession.getMapper(MapMapper.class).selectCovidTestCenter(dongcode);
+        return mapMapper.selectCovidTestCenter(dongcode);
     }
 
     @Override
     public List<SafetyHospitalDto> getSafetyHospitalList(String dongcode) {
-        return sqlSession.getMapper(MapMapper.class).selectSafetyHospital(dongcode);
+        return mapMapper.selectSafetyHospital(dongcode);
     }
 
     @Override
     public List<StoreDto> getConveniences(String dongcode) {
-        return sqlSession.getMapper(MapMapper.class).selectConvenience(dongcode);
+        return mapMapper.selectConvenience(dongcode);
     }
 }

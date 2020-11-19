@@ -3,11 +3,13 @@ package com.ssafy.happyhouse.repository.mapper;
 import com.ssafy.happyhouse.repository.dto.MemberDto;
 import com.ssafy.happyhouse.repository.dto.NoticeDto;
 import com.ssafy.happyhouse.repository.dto.NoticePageDto;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Mapper
 public interface NoticeMapper {
     public int selectTotalCount();
     public ArrayList<NoticeDto> selectPage(@Param("startRow") int startRow, @Param("COUNT_PER_PAGE") int COUNT_PER_PAGE);

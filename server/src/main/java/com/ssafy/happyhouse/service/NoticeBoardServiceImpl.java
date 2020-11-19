@@ -4,7 +4,6 @@ import com.ssafy.happyhouse.repository.dto.MemberDto;
 import com.ssafy.happyhouse.repository.dto.NoticeDto;
 import com.ssafy.happyhouse.repository.dto.NoticePageDto;
 import com.ssafy.happyhouse.repository.mapper.NoticeMapper;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +15,13 @@ import java.util.Map;
 @Service
 public class NoticeBoardServiceImpl implements BoardService{
     @Autowired
-    private SqlSession sqlSession;
+    private NoticeMapper noticeMapper;
 
     private static final int COUNT_PER_PAGE = 10; // 페이지당 10개
 
     @Override
     public NoticePageDto getPage(int page) {
-        int totalCnt = sqlSession.getMapper(NoticeMapper.class).selectTotalCount();
+        int totalCnt = noticeMapper.selectTotalCount();
         int totalPageCnt = totalCnt / COUNT_PER_PAGE;
 
         if(totalCnt % COUNT_PER_PAGE > 0){
@@ -36,7 +35,7 @@ public class NoticeBoardServiceImpl implements BoardService{
         }
 
         int startRow = (page - 1) * 10;
-        ArrayList<NoticeDto> list = sqlSession.getMapper(NoticeMapper.class).selectPage(startRow, COUNT_PER_PAGE);
+        ArrayList<NoticeDto> list = noticeMapper.selectPage(startRow, COUNT_PER_PAGE);
 
         return new NoticePageDto(list, page, startPage, endPage, totalPageCnt);
     }
@@ -51,15 +50,13 @@ public class NoticeBoardServiceImpl implements BoardService{
         dto.setuserid(member.getUserid());
         dto.setbread_cnt(0);
 
-        if(sqlSession.getMapper(NoticeMapper.class).write(dto) == 1)
-            return true;
-        return false;
+        return noticeMapper.write(dto) == 1;
     }
 
     @Override
     public NoticeDto readNotice(int bnum) {
-        sqlSession.getMapper(NoticeMapper.class).updateReadCnt(bnum);
-        return sqlSession.getMapper(NoticeMapper.class).read(bnum);
+        noticeMapper.updateReadCnt(bnum);
+        return noticeMapper.read(bnum);
     }
 
     @Override
@@ -72,30 +69,26 @@ public class NoticeBoardServiceImpl implements BoardService{
         dto.setuserid(member.getUserid());
         dto.setbread_cnt(0);
 
-        if(sqlSession.getMapper(NoticeMapper.class).update(dto) == 1)
-            return true;
-        return false;
+        return noticeMapper.update(dto) == 1;
     }
 
     @Override
     public boolean deleteNotice(int bnum) {
-        if(sqlSession.getMapper(NoticeMapper.class).delete(bnum) == 1)
-            return true;
-        return false;
+        return noticeMapper.delete(bnum) == 1;
     }
 
     @Override
     public List<NoticeDto> searchTitle(String keyword) {
-        return sqlSession.getMapper(NoticeMapper.class).searchTitle(keyword);
+        return noticeMapper.searchTitle(keyword);
     }
 
     @Override
     public List<NoticeDto> searchContent(String keyword) {
-        return sqlSession.getMapper(NoticeMapper.class).searchContent(keyword);
+        return noticeMapper.searchContent(keyword);
     }
 
     @Override
     public List<NoticeDto> searchWriter(String keyword) {
-        return sqlSession.getMapper(NoticeMapper.class).searchWriter(keyword);
+        return noticeMapper.searchWriter(keyword);
     }
 }
