@@ -36,17 +36,12 @@ public class NoticeBoardServiceImpl implements BoardService{
 
         int startRow = (page - 1) * 10;
         ArrayList<NoticeDto> list = noticeMapper.selectPage(startRow, COUNT_PER_PAGE);
-
         return new NoticePageDto(list, page, startPage, endPage, totalPageCnt);
     }
 
     @Override
-    public boolean writeNotice(Map<String, String> paramMap, HttpSession session) {
-        NoticeDto dto = new NoticeDto();
-
+    public boolean writeNotice(NoticeDto dto, HttpSession session) {
         MemberDto member = (MemberDto) session.getAttribute("loginInfo");
-        dto.setBtitle(paramMap.get("title"));
-        dto.setBcontent(paramMap.get("content"));
         dto.setuserid(member.getUserid());
         dto.setbread_cnt(0);
 
@@ -60,12 +55,8 @@ public class NoticeBoardServiceImpl implements BoardService{
     }
 
     @Override
-    public boolean updateNotice(Map<String, String> paramMap, HttpSession session) {
-        NoticeDto dto = new NoticeDto();
-
+    public boolean updateNotice(NoticeDto dto, HttpSession session) {
         MemberDto member = (MemberDto) session.getAttribute("loginInfo");
-        dto.setBtitle(paramMap.get("title"));
-        dto.setBcontent(paramMap.get("content"));
         dto.setuserid(member.getUserid());
         dto.setbread_cnt(0);
 

@@ -6,7 +6,7 @@
         FROM userinfo
         WHERE userid=#{userid} AND userpw=#{userpw}
     </select>
-    <select id="selectUser" resultType="MemberDto">
+    <select id="selectUser" parameterType="MemberDto" resultType="MemberDto">
         SELECT userid, userpw, username, useremail, userphone
         FROM userinfo
         WHERE userid=#{userid} AND userpw=#{userpw} AND userphone=#{userphone}

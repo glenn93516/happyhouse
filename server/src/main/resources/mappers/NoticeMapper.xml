@@ -5,7 +5,7 @@
         SELECT COUNT(*) FROM noticeboard;
     </select>
 
-    <select id="selectPage" resultType="NoticePageDto">
+    <select id="selectPage" resultType="NoticeDto">
         SELECT * FROM noticeboard
         ORDER BY bnum
         LIMIT #{startRow}, #{COUNT_PER_PAGE}

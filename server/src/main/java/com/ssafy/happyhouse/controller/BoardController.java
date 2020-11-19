@@ -5,80 +5,73 @@ import com.ssafy.happyhouse.repository.dto.NoticePageDto;
 import com.ssafy.happyhouse.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/boards")
+@CrossOrigin(origins = "*")
 public class BoardController {
     @Autowired
     @Qualifier("noticeBoardServiceImpl")
     private BoardService boardService;
+    private static final String SUCCESS = "success";
+    private static final String FAIL = "fail";
 
-    @GetMapping("/list")
-    public String getList(@RequestParam(value="page", defaultValue="1") int page, Model model){
-        NoticePageDto pageDto = boardService.getPage(page);
-        model.addAttribute("pageDto", pageDto);
-
-        return "noticeList";
+    @GetMapping
+    public NoticePageDto getList(@RequestParam(value="page", defaultValue="1") int page){
+        return boardService.getPage(page);
     }
 
-    @PostMapping("/write")
-    public String write(@RequestParam Map<String, String> paramMap, HttpSession session){
-        boolean writeResult = boardService.writeNotice(paramMap, session);
-        if(!writeResult){
-            return "noticeWrite";
-        }
-        return "redirect:/boards/list";
+    @PostMapping
+    public ResponseEntity<String> write(@RequestBody NoticeDto dto, HttpSession session){
+        if(boardService.writeNotice(dto, session))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/read/{bnum}")
-    public String read(@PathVariable("bnum") int bnum, Model model){
-        NoticeDto dto = boardService.readNotice(bnum);
-        model.addAttribute("dto", dto);
-        return "noticeRead";
+    @GetMapping("/{bnum}")
+    public NoticeDto read(@PathVariable("bnum") int bnum){
+        return boardService.readNotice(bnum);
     }
 
-    @PostMapping("/update")
-    public String update(@RequestParam Map<String, String> paramMap, HttpSession session){
-        boolean updateResult = boardService.updateNotice(paramMap, session);
-
-        if(!updateResult){
-            return "noticeWrite";
-        }
-        return "redirect:/boards/list";
+    @PutMapping("/{bnum}")
+    public ResponseEntity<String> update(@RequestBody NoticeDto dto, HttpSession session){
+        if(boardService.updateNotice(dto, session))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/delete/{bnum}")
-    public String delete(@PathVariable("bnum") int bnum){
-        boolean deleteResult = boardService.deleteNotice(bnum);
-        if(!deleteResult){
-            return "redirect:/boards/" + bnum;
-        }
-        return "redirect:/boards/list";
+    @DeleteMapping("/{bnum}")
+    public ResponseEntity<String> delete(@PathVariable("bnum") int bnum){
+        if(boardService.deleteNotice(bnum))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam("search_type") String search_type, @RequestParam("keyword") String keyword, Model model){
+    public List<NoticeDto> search(@RequestParam("search_type") String search_type, @RequestParam("keyword") String keyword){
         List<NoticeDto> result = null;
 
-        if(search_type.equals("btitle")){
-            // 제목으로 검색
-            result = boardService.searchTitle(keyword);
-        } else if(search_type.equals("bcontent")){
-            // 내용으로 검색
-            result = boardService.searchContent(keyword);
-        } else if(search_type.equals("userid")){
-            // 글쓴이로 검색
-            result = boardService.searchWriter(keyword);
+        switch (search_type) {
+            case "btitle":
+                // 제목으로 검색
+                result = boardService.searchTitle(keyword);
+                break;
+            case "bcontent":
+                // 내용으로 검색
+                result = boardService.searchContent(keyword);
+                break;
+            case "userid":
+                // 글쓴이로 검색
+                result = boardService.searchWriter(keyword);
+                break;
         }
-        model.addAttribute("resultList", result);
-
-        return "searchResult";
+        return result;
     }
 }

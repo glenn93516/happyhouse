@@ -3,27 +3,25 @@ package com.ssafy.happyhouse.controller;
 import com.ssafy.happyhouse.repository.dto.MemberDto;
 import com.ssafy.happyhouse.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
-@Controller
+@RestController
 @RequestMapping("/members")
+@CrossOrigin(origins = "*")
 public class MemberController {
 
     @Autowired
     private MemberService memberService;
+    private static final String SUCCESS = "success";
+    private static final String FAIL = "fail";
 
-    @GetMapping("/info")
-    public String getMemberInfo(){
-        return "mypage";
-    }
-
+    // TODO : login 처리 jwt이용
     @PostMapping("/login")
     public String login(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, RedirectAttributes redirectAttributes){
         MemberDto member = memberService.loginCheck(id, pw);
@@ -38,6 +36,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    // TODO : logout 처리
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -47,67 +46,35 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(@RequestParam Map<String, String> paramMap, RedirectAttributes redirectAttributes){
-        boolean joinResult = memberService.join(paramMap);
-        if(joinResult){
-            // 회원 가입 성공
-            redirectAttributes.addFlashAttribute("joinResult", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("joinResult", "fail");
-        }
-
-        return "redirect:/";
+    public ResponseEntity<String> join(@RequestBody MemberDto member){
+        if(memberService.join(member))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/update")
-    public String update(@RequestParam Map<String, String> paramMap, RedirectAttributes redirectAttributes){
-        boolean updateResult = memberService.update(paramMap);
-
-        if(updateResult){
-            redirectAttributes.addFlashAttribute("updateResult", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("updateResult", "fail");
-        }
-
-        return "redirect:/members/info";
+    @PutMapping
+    public ResponseEntity<String> update(@RequestBody MemberDto member){
+        if(memberService.update(member))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam("userid") String userid, RedirectAttributes redirectAttributes){
-        boolean deleteResult = memberService.delete(userid);
-
-        if(deleteResult){
-            redirectAttributes.addFlashAttribute("deleteResult", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("deleteResult", "fail");
-        }
-        return "redirect:/";
+    @DeleteMapping("/{userid}")
+    public ResponseEntity<String> delete(@PathVariable("userid") String userid){
+        if(memberService.delete(userid))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/find")
-    public String findUser(@RequestParam("userId") String userId, @RequestParam("userName") String userName, @RequestParam("userPhone") String userPhone, Model model){
-        MemberDto member = memberService.findUser(userId, userName, userPhone);
-
-        if(member != null){
-            model.addAttribute("user", member);
-            model.addAttribute("findResult", "success");
-        } else {
-            model.addAttribute("findResult", "fail");
-        }
-
-        return "findIdPw";
+    public MemberDto findUser(@RequestBody MemberDto member){
+        return memberService.findUser(member);
     }
 
     @PostMapping("/modifyPw")
-    public String modifyPw(@RequestParam Map<String, String> paramMap, RedirectAttributes redirectAttributes){
-        boolean modifyResult = memberService.modifyInfo(paramMap);
-
-        if(modifyResult){
-            redirectAttributes.addFlashAttribute("modifyResult", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("modifyResult", "fail");
-        }
-
-        return "redirect:/";
+    public ResponseEntity<String> modifyPw(@RequestBody MemberDto member){
+        if(memberService.modifyInfo(member))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 }

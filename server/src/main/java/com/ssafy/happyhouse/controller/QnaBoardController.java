@@ -4,6 +4,8 @@ import com.ssafy.happyhouse.repository.dto.QnaBoardDto;
 import com.ssafy.happyhouse.repository.dto.QnaBoardPageDto;
 import com.ssafy.happyhouse.service.QnaBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +17,8 @@ public class QnaBoardController {
 
     @Autowired
     private QnaBoardService qnaBoardService;
+    private static final String SUCCESS = "success";
+    private static final String FAIL = "fail";
 
     @GetMapping("/list/{page}")
     public QnaBoardPageDto getList(@PathVariable("page") int page){
@@ -27,40 +31,24 @@ public class QnaBoardController {
     }
 
     @PostMapping("/add")
-    public String writeQna(@RequestBody QnaBoardDto dto, HttpSession session){
-        boolean writeResult = qnaBoardService.writeQna(dto, session);
-        String result = "";
-        if(writeResult){
-            result = "success";
-        } else {
-            result = "fail";
+    public ResponseEntity<String> writeQna(@RequestBody QnaBoardDto dto, HttpSession session){
+        if(qnaBoardService.writeQna(dto, session)) {
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
         }
-        return result;
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/modify")
-    public String modifyQna(@RequestBody QnaBoardDto dto, HttpSession session){
-        boolean modifyResult = qnaBoardService.modifyQna(dto, session);
-        String result = "";
-        if(modifyResult){
-            result = "success";
-        } else {
-            result = "fail";
-        }
-
-        return result;
+    public ResponseEntity<String> modifyQna(@RequestBody QnaBoardDto dto, HttpSession session){
+        if(qnaBoardService.modifyQna(dto, session))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/delete/{qnaId}")
-    public String deleteQna(@PathVariable("qnaId") int qnaId){
-        boolean deleteResult = qnaBoardService.deleteQna(qnaId);
-        String result = "";
-
-        if(deleteResult){
-            result = "success";
-        } else {
-            result = "fail";
-        }
-        return result;
+    public ResponseEntity<String> deleteQna(@PathVariable("qnaId") int qnaId){
+        if(qnaBoardService.deleteQna(qnaId))
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
     }
 }

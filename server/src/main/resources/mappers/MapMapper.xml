@@ -20,7 +20,7 @@
 
     <select id="selectCovidTestCenter" resultType="CovidTestCenterDto">
         SELECT valid_date, city, gugun, hospital_name, address, phone, week_time, saturday_time, holiday_time
-        FROM coivdtestcenter
+        FROM covidtestcenter
         WHERE (city, gugun) IN (
             SELECT DISTINCT LEFT(city, 2), gugun
             FROM baseaddress

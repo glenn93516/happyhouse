@@ -18,7 +18,7 @@
             dongcode, city, ba.dong ba_dong, ba.lat ba_lat, ba.lng ba_lng
         FROM housedeal hd, houseinfo hi, baseaddress ba
         WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
-            AND hi.dong=#{dong}
+            AND hi.dong LIKE CONCAT('%', #{dong}, '%')
     </select>
 
     <select id="selctAll" resultMap="dealInfo">

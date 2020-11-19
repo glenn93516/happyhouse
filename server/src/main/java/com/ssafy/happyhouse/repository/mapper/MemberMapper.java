@@ -10,6 +10,6 @@ public interface MemberMapper {
     public int insertOne(MemberDto member);
     public int updateOne(MemberDto member);
     public int delete(@Param("userid") String userid);
-    public MemberDto selectUser(@Param("userid") String userid, @Param("userpw") String userpw, @Param("userphone") String userphone);
+    public MemberDto selectUser(MemberDto member);
     public int updateUser(MemberDto member);
 }

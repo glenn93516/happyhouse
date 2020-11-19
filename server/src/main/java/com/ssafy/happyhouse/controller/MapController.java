@@ -7,15 +7,13 @@ import com.ssafy.happyhouse.repository.dto.SidoGugunCodeDto;
 import com.ssafy.happyhouse.repository.dto.StoreDto;
 import com.ssafy.happyhouse.service.MapService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/map")
+@CrossOrigin(origins = "*")
 public class MapController {
 
     @Autowired

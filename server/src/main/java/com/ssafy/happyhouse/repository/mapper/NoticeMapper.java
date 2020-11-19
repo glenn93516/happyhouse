@@ -13,7 +13,7 @@ import java.util.List;
 public interface NoticeMapper {
     public int selectTotalCount();
     public ArrayList<NoticeDto> selectPage(@Param("startRow") int startRow, @Param("COUNT_PER_PAGE") int COUNT_PER_PAGE);
-    public int write(NoticeDto member);
+    public int write(NoticeDto dto);
     public int updateReadCnt(@Param("bnum") int bnum);
     public NoticeDto read(@Param("bnum") int bnum);
     public int update(NoticeDto dto);

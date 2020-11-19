@@ -3,22 +3,20 @@ package com.ssafy.happyhouse.controller;
 import com.ssafy.happyhouse.repository.dto.HouseDealDto;
 import com.ssafy.happyhouse.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/search")
+@RequestMapping("/dealLists")
+@CrossOrigin(origins = "*")
 public class SearchController {
 
     @Autowired
     private SearchService searchService;
 
-    @GetMapping(value="/dealList", produces = "application/json; charset=utf8")
+    @GetMapping
     public List<HouseDealDto> getDealList(@RequestParam Map<String, String> paramMap){
         String aptName = paramMap.get("aptName");
         String dong = paramMap.get("dong");

@@ -2,11 +2,8 @@ package com.ssafy.happyhouse.service;
 
 import com.ssafy.happyhouse.repository.dto.MemberDto;
 import com.ssafy.happyhouse.repository.mapper.MemberMapper;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -19,27 +16,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean join(Map<String, String> paramMap) {
-        String userid = paramMap.get("id");
-        String userpw = paramMap.get("pw");
-        String username = paramMap.get("name");
-        String useremail = paramMap.get("email");
-        String userphone = paramMap.get("phone");
-
-        MemberDto member = new MemberDto(userid, userpw, username, useremail, userphone);
+    public boolean join(MemberDto member) {
         return memberMapper.insertOne(member) == 1;
     }
 
     @Override
-    public boolean update(Map<String, String> paramMap) {
-        String userid = paramMap.get("id");
-        String userpw = paramMap.get("pw");
-        String username = paramMap.get("name");
-        String useremail = paramMap.get("email");
-        String userphone = paramMap.get("phone");
-
-        MemberDto member = new MemberDto(userid, userpw, username, useremail, userphone);
-
+    public boolean update(MemberDto member) {
         return memberMapper.updateOne(member) == 1;
     }
 
@@ -49,19 +31,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberDto findUser(String userId, String userPw, String userPhone) {
-        return memberMapper.selectUser(userId, userPw, userPhone);
+    public MemberDto findUser(MemberDto member) {
+        return memberMapper.selectUser(member);
     }
 
     @Override
-    public boolean modifyInfo(Map<String, String> paramMap) {
-        String userid = paramMap.get("userId");
-        String userpw = paramMap.get("newPw");
-
-        MemberDto member = new MemberDto();
-        member.setUserid(userid);
-        member.setUserpw(userpw);
-
+    public boolean modifyInfo(MemberDto member) {
         return memberMapper.updateUser(member) == 1;
     }
 }
