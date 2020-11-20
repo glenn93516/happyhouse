@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberMapper {
-    public MemberDto checkUser(@Param("userid") String userid, @Param("userpw") String userpw);
+    public MemberDto checkUser(MemberDto member);
     public int insertOne(MemberDto member);
     public int updateOne(MemberDto member);
     public int delete(@Param("userid") String userid);

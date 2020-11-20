@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
 import com.ssafy.happyhouse.repository.dto.MemberDto;
+import com.ssafy.happyhouse.service.JwtService;
 import com.ssafy.happyhouse.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/members")
@@ -18,32 +21,42 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private JwtService jwtService;
+
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
 
-    // TODO : login 처리 jwt이용
     @PostMapping("/login")
-    public String login(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, RedirectAttributes redirectAttributes){
-        MemberDto member = memberService.loginCheck(id, pw);
+    public ResponseEntity<Map<String, Object>> login(@RequestBody MemberDto dto, HttpServletRequest request){
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+        MemberDto member = memberService.loginCheck(dto);
+
         if(member != null){
-            // DB에 있는 유저
-            HttpSession session = request.getSession();
-            session.setAttribute("loginInfo", member); // 세션에 로그인 정보 담기
-            redirectAttributes.addFlashAttribute("loginResult", "success");
+            String token = jwtService.create(member);
+
+            resultMap.put("auth-token", token);
+            resultMap.put("userid", member.getUserid());
+            resultMap.put("username", member.getUsername());
+            resultMap.put("role", member.getRole());
         } else {
-            redirectAttributes.addFlashAttribute("loginResult", "fail");
+            resultMap.put("message", "로그인 실패");
         }
-        return "redirect:/";
+        status = HttpStatus.ACCEPTED;
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
-    // TODO : logout 처리
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        session.invalidate();
+    @GetMapping("/info")
+    public ResponseEntity<Map<String, Object>> getInfo(HttpServletRequest req){
+        Map<String, Object> resultMap = new HashMap<>();
+        System.out.println(jwtService.get(req.getHeader("auth-token")));
 
-        return "index";
+        resultMap.putAll(jwtService.get(req.getHeader("auth-token")));
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
     }
+
 
     @PostMapping("/join")
     public ResponseEntity<String> join(@RequestBody MemberDto member){

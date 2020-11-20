@@ -11,8 +11,8 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
 
     @Override
-    public MemberDto loginCheck(String id, String pw) {
-        return memberMapper.checkUser(id, pw);
+    public MemberDto loginCheck(MemberDto member) {
+        return memberMapper.checkUser(member);
     }
 
     @Override

@@ -6,7 +6,7 @@ public class MemberDto {
 	private String username;
 	private String useremail;
 	private String userphone;
-	private int roll; //회원0 관리자1
+	private int role; //회원0 관리자1
 	
 	public MemberDto() {}
 	
@@ -19,14 +19,14 @@ public class MemberDto {
 		this.userphone = userphone;
 	}
 	
-	public MemberDto(String userid, String userpw, String username, String useremail, String userphone, int roll) {
+	public MemberDto(String userid, String userpw, String username, String useremail, String userphone, int role) {
 		super();
 		this.userid = userid;
 		this.userpw = userpw;
 		this.username = username;
 		this.useremail = useremail;
 		this.userphone = userphone;
-		this.roll = roll;
+		this.role = role;
 	}
 	
 	public String getUserid() {
@@ -59,10 +59,10 @@ public class MemberDto {
 	public void setUserphone(String userphone) {
 		this.userphone = userphone;
 	}
-	public int getRoll() {
-		return roll;
+	public int getRole() {
+		return role;
 	}
-	public void setRoll(int roll) {
-		this.roll = roll;
+	public void setRoll(int role) {
+		this.role = role;
 	}
 }

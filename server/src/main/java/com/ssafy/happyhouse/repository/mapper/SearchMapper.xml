@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.repository.mapper.SearchMapper">
+    <select id="selectByAptName" resultMap="dealInfo">
+        SELECT
+            deal_id, dealAmount, dealYear, dealMonth, dealDay, area, floor, type, rentMoney, hd.houseinfo_id,
+            hi.houseinfo_id hi_houseinfo_id, hi.dong, aptName, buildYear, jibun, hi.lat, hi.lng, img, code,
+            dongcode, city, ba.dong ba_dong, ba.lat ba_lat, ba.lng ba_lng
+        FROM housedeal hd, houseinfo hi, baseaddress ba
+        WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
+        AND hi.aptName LIKE CONCAT('%', #{aptName}, '%')
+    </select>
+
+    <select id="selectByDong" resultMap="dealInfo">
+        SELECT
+            deal_id, dealAmount, dealYear, dealMonth, dealDay, area, floor, type, rentMoney, hd.houseinfo_id,
+            hi.houseinfo_id hi_houseinfo_id, hi.dong, aptName, buildYear, jibun, hi.lat, hi.lng, img, code,
+            dongcode, city, ba.dong ba_dong, ba.lat ba_lat, ba.lng ba_lng
+        FROM housedeal hd, houseinfo hi, baseaddress ba
+        WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
+            AND hi.dong LIKE CONCAT('%', #{dong}, '%')
+    </select>
+
+    <select id="selctAll" resultMap="dealInfo">
+        SELECT
+            deal_id, dealAmount, dealYear, dealMonth, dealDay, area, floor, type, rentMoney, hd.houseinfo_id,
+            hi.houseinfo_id hi_houseinfo_id, hi.dong, aptName, buildYear, jibun, hi.lat, hi.lng, img, code,
+            dongcode, city, ba.dong ba_dong, ba.lat ba_lat, ba.lng ba_lng
+        FROM housedeal hd, houseinfo hi, baseaddress ba
+        WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
+        LIMIT 20
+    </select>
+
+    <resultMap id="dealInfo" type="HouseDealDto">
+        <result property="dealId" column="deal_id"/>
+        <result property="dealAmount" column="dealAmount"/>
+        <result property="dealYear" column="dealYear"/>
+        <result property="dealMonth" column="dealMonth"/>
+        <result property="dealDay" column="dealDay"/>
+        <result property="area" column="area"/>
+        <result property="floor" column="floor"/>
+        <result property="type" column="type"/>
+        <result property="rentMoney" column="rentMoney"/>
+        <association property="houseInfo" column="houseinfo_id" javaType="HouseInfoDto" resultMap="houseinfoMap"/>
+    </resultMap>
+
+    <resultMap id="houseinfoMap" type="HouseInfoDto">
+        <result property="houseinfoId" column="hi_houseinfo_id"/>
+        <result property="dong" column="dong"/>
+        <result property="aptName" column="AptName"/>
+        <result property="buildYear" column="buildYear"/>
+        <result property="jibun" column="jibun"/>
+        <result property="lat" column="lat"/>
+        <result property="lng" column="lng"/>
+        <result property="img" column="img"/>
+        <association property="baseAddress" column="code" javaType="BaseAddressDto" resultMap="baseAddressMap"/>
+    </resultMap>
+
+    <resultMap id="baseAddressMap" type="BaseAddressDto">
+        <result property="dongcode" column="dongcode"/>
+        <result property="city" column="city"/>
+        <result property="gugun" column="gugun"/>
+        <result property="dong" column="ba_dong"/>
+        <result property="lat" column="ba_lat"/>
+        <result property="lng" column="ba_lng"/>
+    </resultMap>
+</mapper>

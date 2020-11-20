@@ -3,7 +3,7 @@ package com.ssafy.happyhouse.service;
 import com.ssafy.happyhouse.repository.dto.MemberDto;
 
 public interface MemberService {
-    public MemberDto loginCheck(String id, String pw);
+    public MemberDto loginCheck(MemberDto member);
     public boolean join(MemberDto member);
     public boolean update(MemberDto member);
     public boolean delete(String userid);
