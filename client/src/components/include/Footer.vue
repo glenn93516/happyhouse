@@ -1,0 +1,37 @@
+<template>
+    <div class="p-3 mb-2 text-white footer">
+        <div id="nav">
+            <router-link to="/search">회사소개</router-link> |
+            <router-link to="/regist">채용정보</router-link> |
+            <router-link to="/regist">이용약관</router-link> |
+            <router-link to="/regist">개인정보 처리방침</router-link> |
+            <router-link to="/regist">위치기반 서비스 이용약관</router-link> |
+            <router-link to="/regist">중개사 사이트 바로가기</router-link> |
+
+            <div class="container">
+                <p>상호:(주)해피하우스 | 대표: 김민혁, 이아름 | 사업자등록번호: 0433133-0434844 |  <br></p>
+                <p>주소:대전광역시 유성구 덕명동 124 207호 대전3반 <br></p>
+                <p>서비스 이용문의:042-820-7400 | 이메일: ssafy2020@ssafy.com | 서비스 제휴문의: partnership@ssafy.com<br></p>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+
+export default {
+
+}
+</script>
+<style>
+
+.footer{
+    background-color: #d4dca3;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.container{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 400;
+    color: #61625b;
+}
+</style>

@@ -1,26 +1,33 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Search from "../views/Search.vue";
-import Write from "../views/Write.vue"
-import SearchDetail from "@/views/SearchDetail.vue";
-
+import Qna from "../views/Qna.vue";
+import QnaWrite from "../views/QnaWrite.vue";
+import QnaDetail from "@/views/QnaDetail.vue";
+import QnaList from "@/views/QnaList.vue";
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/search",
-    name: "Search",
-    component: Search
+    path: "/qna",
+    name: "Qna",
+    component: Qna
   },
   {
-    path: "/search/:qnaId",
-    component : SearchDetail
+    path: "/qnalist",
+    name: "QnaList",
+    component: QnaList
   },
   {
-    path: "/write",
-    name: "Write",
-    component: Write
-  }
+    path: "/qna/:qnaId",
+    // path: "/qnadetail",
+    component : QnaDetail
+  },
+  {
+    path: "/qnawrite",
+    name: "QnaWrite",
+    component: QnaWrite
+  },
+
 ];
 
 const router = new VueRouter({

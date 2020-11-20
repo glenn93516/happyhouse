@@ -1,18 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <h1 style="font-weight:bold;"><span style="color:#42b983">HappyHouse</span> QnA</h1>
-      <hr/>
-      <router-link to="/search">글목록</router-link>
-      <router-link to="/write">글쓰기</router-link> 
+    <homeheader></homeheader>
+    <div>
+      <router-view />
     </div>
-    <router-view />
+    <homefooter></homefooter>
   </div>
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -28,7 +26,17 @@
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+/* #nav a.router-link-exact-active {
+  color: #666666;
+} */
 </style>
+
+<script>
+import homefooter from "@/components/include/Footer.vue";
+import homeheader from "@/components/include/Header.vue";
+export default {
+  components : {
+    homefooter, homeheader,
+  }
+}
+</script>

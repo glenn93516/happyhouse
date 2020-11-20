@@ -25,6 +25,7 @@
     </div>
     <div class="d-flex justify-content-center" style="margin-top: 10px">
       <b-button variant="primary" @click="add">글쓰기</b-button>
+      <b-button variant="danger" @click="cancel">취소</b-button>
     </div>
   </div>
 </template>
@@ -62,6 +63,9 @@ export default {
         .catch()
         .finally();
     },
+    cancel(){
+      
+    }
   },
 };
 </script>

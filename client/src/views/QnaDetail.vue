@@ -32,8 +32,11 @@
                 <td><b-form-input style="height:200px;" v-model="board.qnaContent" type="text" readonly /></td>
                 </tr>
             </table>
-            </div>
-            <div class="d-flex justify-content-center" style="margin-top: 10px">
+        </div>
+        <div>
+            <router-link to="/qnalist"><b-button id="listBtn" style="margin:20px;">목록</b-button></router-link>
+            <router-link to="/qnalist"><b-button id="modifyBtn" style="margin:20px;">수정</b-button></router-link>
+            <router-link to="/qnalist"><b-button id="deleteBtn" style="margin:20px;">삭제</b-button></router-link>
         </div>
     </div>
 </template>
@@ -60,5 +63,13 @@ export default {
 </script>
 
 <style>
-
+#listBtn{
+    background-color: #8d9b46;
+}
+#modifyBtn{
+    background-color: #889f00;
+}
+#deleteBtn{
+    background-color: #68770e;
+}
 </style>
