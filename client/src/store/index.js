@@ -34,7 +34,6 @@ export default new Vuex.Store({
             localStorage["auth-token"] = payload["auth-token"];
         },
         LOGOUT(state) {
-            console.log("store LOGOUT called");
             state.accessToken = null;
             state.userid = "";
             state.username = "";

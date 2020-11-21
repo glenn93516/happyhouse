@@ -1,13 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "@/store";
+import axios from "axios";
+
 import Qna from "../views/Qna.vue";
 import QnaWrite from "../views/QnaWrite.vue";
 import QnaDetail from "@/views/QnaDetail.vue";
 import QnaList from "@/views/QnaList.vue";
 import Login from "@/views/Login.vue";
-import store from "@/store";
-import axios from "axios";
-
+import Join from "@/views/Join.vue";
 
 Vue.use(VueRouter);
 
@@ -25,27 +26,31 @@ const requireAuth = () => (to, from, next) => {
   } 
 }
 const routes = [
+  // Qna 게시판
   {
-    path: "/qna",
-    name: "Qna",
-    component: Qna
+    path: '/qna',
+    name: 'Qna',
+    component: Qna,
+    children: [
+      {
+        path: '',
+        name: 'QnaList',
+        component: QnaList
+      },
+      {
+        path: 'write',
+        name: 'QnaWrite',
+        component: QnaWrite,
+        beforeEnter: requireAuth()
+      },
+      {
+        path: ':qnaId',
+        name: 'QnaDetail',
+        component: QnaDetail
+      },
+    ]
   },
-  {
-    path: "/qnalist",
-    name: "QnaList",
-    component: QnaList
-  },
-  {
-    path: "/qna/:qnaId",
-    // path: "/qnadetail",
-    component : QnaDetail
-  },
-  {
-    path: "/qnawrite",
-    name: "QnaWrite",
-    component: QnaWrite,
-    beforeEnter: requireAuth()
-  },
+  // 로그인
   {
     path: "/login",
     name: "Login",
@@ -55,6 +60,12 @@ const routes = [
     path: "/login/:nextRoute",
     name: "LoginNextRoute",
     component: Login
+  },
+  // 회원가입
+  {
+    path: '/join',
+    name: 'Join',
+    Component: Join
   }
 ];
 

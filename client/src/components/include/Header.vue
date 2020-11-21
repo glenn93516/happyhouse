@@ -38,7 +38,6 @@ export default {
     },
     methods: {
         logout: function(){
-            console.log("header : logout() called");
             this.$store.dispatch('LOGOUT');
             this.$router.push({
                 path: '/qna'
