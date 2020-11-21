@@ -27,7 +27,7 @@
                     placeholder="비밀번호를 입력하세요">
                 </b-form-input>
                 <b-form-invalid-feedback id="input-pw-feedback">
-                    비밀번호는 6자 이상 입력해주세요
+                    비밀번호는 5자 이상 입력해주세요
                 </b-form-invalid-feedback>
             </b-form-group>
             <b-button no-border class="login-btn" type="submit">로그인</b-button>
@@ -56,14 +56,13 @@ export default {
             return this.$route.params.nextRoute ? this.$route.params.nextRoute : "";
         },
         pwState() {
-            return this.user.userpw.length >= 6 ? true : false;
-        }
+            return this.user.userpw.length >= 5 ? true : false;
+        },
     },
     methods: {
         login: function() {
-        // LOGIN 액션 실행
-        // 서버와 통신(axios)을 해 토큰값을 얻어야 하므로 Actions를 호출.
-            console.log(this.$store);
+            // LOGIN 액션 실행
+            // 서버와 통신(axios)을 해 토큰값을 얻어야 하므로 Actions를 호출.
             this.$store
                 .dispatch("LOGIN", this.user)
                 .then(() => this.$router.replace(`/${this.nextRoute}`))

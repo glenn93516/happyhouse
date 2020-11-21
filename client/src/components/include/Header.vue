@@ -6,7 +6,8 @@
                 <b-nav-item><router-link to="/"><img src="./../../assets/newlogo.png" style="margin-top:8px;" height="50px"></router-link></b-nav-item>
             </b-nav>
             <b-nav id="loginbar">
-                <b-nav-item><router-link to="/login">로그인</router-link></b-nav-item>
+                <b-nav-item v-if="isAuthenticated" @click="logout">로그아웃</b-nav-item>
+                <b-nav-item v-else><router-link to="/login">로그인</router-link></b-nav-item>
                 <b-nav-item><router-link to="/join">회원가입</router-link></b-nav-item>
             </b-nav>
         </b-nav>
@@ -26,8 +27,24 @@
 </template>
 	
 <script>
-export default {
+import {mapGetters} from 'vuex';
 
+export default {
+    computed: {
+        ...mapGetters['getIsAuthenticated'],
+        isAuthenticated() {
+            return this.$store.state.isAuthenticated;
+        }
+    },
+    methods: {
+        logout: function(){
+            console.log("header : logout() called");
+            this.$store.dispatch('LOGOUT');
+            this.$router.push({
+                path: '/qna'
+            }); // TODO : 홈화면 만들면 홈으로 이동하도록 변경
+        }
+    }
 }
 </script>
 

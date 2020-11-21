@@ -15,7 +15,9 @@ const requireAuth = () => (to, from, next) => {
   const nextRoute = to.path;
   let token = axios.defaults.headers.common["auth-token"];
 
-  if (token.length) {
+  // TODO : axios로 Spring boot 서버에 요청 보내서 현재 토큰 유효한지 확인하는 작업 필요
+  console.log("requireAuth() called");
+  if (token != undefined && token.length) {
     store.commit("setAuth", token);
     return next();
   } else {
