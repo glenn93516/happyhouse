@@ -3,9 +3,23 @@ import App from './App.vue';
 import router from './router';
 import VueSession from 'vue-session';
 import BootstrapVue from 'bootstrap-vue';
+import store from "./store";
+import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+
+// 새로고침 할 때 마다 실행될것
+const localAccessToken = () => {
+  const authtoken = localStorage.getItem("auth-token");
+  if (!authtoken)
+      return;
+  axios.defaults.headers.common["auth-token"] = authtoken;
+  store.state.isAuthenticated = true;
+  // TODO : 기본적인 유저 정보 저장해야함
+}
+
+localAccessToken();
 
 Vue.config.productionTip = false;
 Vue.use(VueSession, sessionOptions);
@@ -18,5 +32,6 @@ var sessionOptions = {
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");

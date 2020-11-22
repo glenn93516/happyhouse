@@ -1,15 +1,16 @@
 <template>
   <div class="container">
-    <qna-list></qna-list>
+    <qna-nav></qna-nav>
     <router-view/>
   </div>
 </template>
 
 <script>
-import QnaList from "@/views/QnaList.vue";
+import QnaNav from "@/components/QnaNav.vue";
+
 export default {
   components : {
-    QnaList
+    QnaNav
   }
 }
 </script>

@@ -46,10 +46,6 @@ export default {
       }
     };
   },
-  created(){
-    // let loginSession = this.$session.get('loginInfo');       // 세션 정보 와야함. -> 컨트롤쪽에서 온다.
-    // this.qna_writer = loginSession.get("userid");
-  },
   methods: {
     add() {
       console.log(this.board);
@@ -57,10 +53,14 @@ export default {
         .post('http://localhost:8097/happyhouse/qna/add', this.board)
         .then((response) => {
           if (response.data) alert('글이 등록되었습니다.');
-          else alert('오류가 발생하였습니다.');
-          location.href = 'search';
+          this.$router.push({
+            path: '/qna'
+          })
         })
-        .catch()
+        .catch((error) => {
+          alert('글 작성 중 오류가 발생하였습니다.');
+          console.log(error);
+        })
         .finally();
     },
     cancel(){
