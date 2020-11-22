@@ -16,7 +16,7 @@ const localAccessToken = () => {
       return;
   axios.defaults.headers.common["auth-token"] = authtoken;
   store.state.isAuthenticated = true;
-  // TODO : 기본적인 유저 정보 저장해야함
+  // TODO : Backend server에 auth-token으로 유저 정보 받아와서 저장해야함
 }
 
 localAccessToken();

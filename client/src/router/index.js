@@ -41,6 +41,7 @@ const requireAuth = () => (to, from, next) => {
     next("/login" + nextRoute);
   } 
 }
+
 const routes = [
   // 메인 페이지
   {
