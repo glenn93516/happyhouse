@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <!-- Qna 질문 -->
         <div style="margin-top: 20px" class="d-flex justify-content-center">
             <table style="width:70%;">
                 <tr>
@@ -58,13 +59,21 @@
             <b-button @click="modifyQna" id="modifyBtn" style="margin:20px;">수정</b-button>
             <b-button v-if="!isUpdate" @click="deleteQna" id="deleteBtn" style="margin:20px;">삭제</b-button>
         </div>
+
+        <!-- Qna 답변 -->
+        <qna-answer v-bind:qnaId="qnaId"></qna-answer>
     </div>
 </template>
 
 <script>
+import QnaAnswer from "@/components/QnaAnswer.vue";
+
 import axios from 'axios';
 
 export default {
+    components: {
+        QnaAnswer
+    },
     data(){
         return {
             isUpdate: false,
