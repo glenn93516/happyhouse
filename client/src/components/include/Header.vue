@@ -40,7 +40,7 @@ export default {
         logout: function(){
             this.$store.dispatch('LOGOUT');
             this.$router.push({
-                path: '/qna'
+                path: '/'
             }); // TODO : 홈화면 만들면 홈으로 이동하도록 변경
         }
     }
