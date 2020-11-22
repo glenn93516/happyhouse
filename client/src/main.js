@@ -7,7 +7,7 @@ import store from "./store";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
-
+import "@/fontAwesomeIcon.js";
 
 // 새로고침 할 때 마다 실행될것
 const localAccessToken = () => {
