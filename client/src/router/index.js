@@ -24,7 +24,8 @@ import Join from "@/views/Join.vue";
 import Mypage from "@/views/Mypage.vue";
 import MypageInfo from "@/views/MypageInfo.vue";
 import MypageModify from "@/views/MypageModify.vue";
-import MypageManagement from "@/views/MypageManagement.vue";
+import MypageManagement from "@/views/MypageManagement.vue"; 
+import Bookmark from "@/views/Bookmark.vue";
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,12 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
+  },
+  // 즐겨찾기 페이지
+  {
+    path: '/bookmark',
+    name: 'Bookmark',
+    component: Bookmark
   },
   // 뉴스 게시판
   {
