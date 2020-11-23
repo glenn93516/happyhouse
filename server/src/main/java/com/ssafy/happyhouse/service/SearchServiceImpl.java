@@ -24,6 +24,11 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    public List<HouseDealDto> getDealListByAptDong(String aptName, String dong) {
+        return searchMapper.selectByAptDong(aptName, dong);
+    }
+
+    @Override
     public List<HouseDealDto> getDealList() {
         return searchMapper.selctAll();
     }

@@ -18,7 +18,18 @@
             dongcode, city, ba.dong ba_dong, ba.lat ba_lat, ba.lng ba_lng
         FROM housedeal hd, houseinfo hi, baseaddress ba
         WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
-            AND hi.dong LIKE CONCAT('%', #{dong}, '%')
+            AND hi.code=#{dong}
+    </select>
+
+    <select id="selectByAptDong" resultMap="dealInfo">
+        SELECT
+        deal_id, dealAmount, dealYear, dealMonth, dealDay, area, floor, type, rentMoney, hd.houseinfo_id,
+        hi.houseinfo_id hi_houseinfo_id, hi.dong, aptName, buildYear, jibun, hi.lat, hi.lng, img, code,
+        dongcode, city, ba.dong ba_dong, ba.lat ba_lat, ba.lng ba_lng
+        FROM housedeal hd, houseinfo hi, baseaddress ba
+        WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
+        AND hi.aptName LIKE CONCAT('%', #{aptName}, '%')
+        AND hi.code=#{dong}
     </select>
 
     <select id="selctAll" resultMap="dealInfo">

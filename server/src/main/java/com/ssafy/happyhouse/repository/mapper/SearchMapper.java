@@ -10,5 +10,6 @@ import java.util.List;
 public interface SearchMapper {
     public List<HouseDealDto> selectByAptName(@Param("aptName") String aptName);
     public List<HouseDealDto> selectByDong(@Param("dong") String dong);
+    public List<HouseDealDto> selectByAptDong(@Param("aptName") String aptName, @Param("dong") String dong);
     public List<HouseDealDto> selctAll();
 }

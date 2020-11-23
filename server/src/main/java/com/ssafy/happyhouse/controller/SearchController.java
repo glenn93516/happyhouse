@@ -20,10 +20,16 @@ public class SearchController {
     public List<HouseDealDto> getDealList(@RequestParam Map<String, String> paramMap){
         String aptName = paramMap.get("aptName");
         String dong = paramMap.get("dong");
-        String sortType = paramMap.get("sortType");
+
+        aptName = aptName.length() > 0 ? aptName : null;
+        dong = dong.length() > 0 ? dong : null;
+
         List<HouseDealDto> dealList = null;
 
-        if(aptName != null){
+        if(aptName != null && dong != null){
+            // 동 + 아파트 이름으로 검색
+            dealList = searchService.getDealListByAptDong(aptName, dong);
+        } else if(aptName != null){
             // 아파트 이름으로 검색
             dealList = searchService.getDealListByAptName(aptName);
         } else if(dong != null){
@@ -32,11 +38,6 @@ public class SearchController {
         } else {
             // 전체 검색
             dealList = searchService.getDealList();
-        }
-
-        // 정렬
-        if(dealList != null && sortType != null){
-            searchService.sortDealList(dealList, sortType);
         }
         
         return dealList;

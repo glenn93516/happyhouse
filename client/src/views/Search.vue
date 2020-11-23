@@ -20,13 +20,13 @@
 
         <b-container fluid></b-container>
         <b-row>
-            <b-col cols="4">
+            <b-col cols="5">
                 <!-- 매물 목록 -->
                 <search-list v-if="showList" v-on:showDetail="showDetail" v-bind:propDealList="dealList"></search-list>
                 <!-- 상세보기 -->
                 <search-detail v-else v-bind:propDeal="dealDetail"></search-detail>
             </b-col>
-            <b-col cols="8">
+            <b-col cols="7">
                 <!-- 구글 지도 -->
                 <google-map></google-map>
             </b-col>
@@ -95,12 +95,20 @@ export default {
             })
         },
         onSubmit: function(){
-            // TODO : 검색 조건에 따라 Backend에서 거래 정보 가져와야함
-            console.log("onSubmit() called");
+            axios.get('http://localhost:8097/happyhouse/dealLists', {
+                    params: this.searchConditions
+                })
+                .then(({data}) => {
+                    this.dealList = data;
+                })
+                .catch((error) => {
+                    alert("검색 결과 가져오는 중 에러 발생");
+                    console.log(error);
+                })
         },
         showDetail: function(deal){
             this.dealDetail = deal;
-            showList = false;
+            this.showList = false;
 
             // TODO : 구글 지도에 선택한 거래 정보 위치 넘기는 과정 추가해야함
         }
