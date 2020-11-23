@@ -16,6 +16,10 @@ import QnaWrite from "../views/QnaWrite.vue";
 import QnaDetail from "@/views/QnaDetail.vue";
 import QnaList from "@/views/QnaList.vue";
 
+// 공지사항
+import Boards from "../views/Boards.vue";
+import BoardDetail from "../views/BoardDetail.vue";
+
 // 로그인, 회원 가입
 import Login from "@/views/Login.vue";
 import Join from "@/views/Join.vue";
@@ -94,6 +98,18 @@ const routes = [
         component: QnaDetail
       },
     ]
+  },
+  // 공지사항
+  {
+    path: '/boards',
+    name: 'Boards',
+    component: Boards,
+  },
+  // 공지사항 상세화면
+  {
+    path: '/boarddetail',
+    name: 'BoardDetail',
+    component: BoardDetail,
   },
   // 로그인
   {
