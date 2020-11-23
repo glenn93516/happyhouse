@@ -17,7 +17,7 @@
               type="email"
               required
               placeholder="Enter id"
-            ></b-form-input>
+            ></b-form-input> 
           </b-form-group>
           <b-form-group id="input-group-2" label="비밀번호" label-for="input-2">
             <b-form-input

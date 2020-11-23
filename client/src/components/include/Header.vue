@@ -14,7 +14,7 @@
         <div class="bottom">
             <b-navbar class="test justify-content-center" toggleable="lg" type="dark">
                 <b-navbar-nav class="navout">
-                    <b-nav-item class="navitem"><router-link to="/">공지사항</router-link></b-nav-item>
+                    <b-nav-item class="navitem"><router-link to="/boards">공지사항</router-link></b-nav-item>
                     <b-nav-item class="navitem"><router-link to="/search">매물검색</router-link></b-nav-item>
                     <b-nav-item class="navitem"><router-link to="/news">오늘의뉴스</router-link></b-nav-item>
                     <b-nav-item class="navitem"><router-link to="/bookmark">즐겨찾기</router-link></b-nav-item>
