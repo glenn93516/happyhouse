@@ -5,7 +5,6 @@ import axios from "axios";
 
 // 메인페이지
 import Main from "@/views/Main.vue";
-import News from "@/views/News.vue";
 
 // 검색 페이지
 import Search from "@/views/Search.vue";
@@ -21,6 +20,10 @@ import Board from "../views/Board.vue";
 import BoardDetail from "../views/BoardDetail.vue";
 import BoardList from "../views/BoardList.vue";
 import BoardWrite from "../views/BoardWrite.vue";
+
+// 뉴스
+import News from "../views/News.vue";
+import NewsList from "../views/NewsList.vue";
 
 // 로그인, 회원 가입
 import Login from "@/views/Login.vue";
@@ -144,6 +147,20 @@ const routes = [
     path: '/join',
     name: 'Join',
     component: Join
+  },
+  // 뉴스 리스트
+  {
+    path: '/newslist',
+    name: 'NewsList',
+    component: NewsList,
+    children: [
+      {
+        // 뉴스 디테일
+        path: '/news',
+        name: 'NewsList',
+        component: News,
+      }
+    ]
   },
   // 마이 페이지
   {
