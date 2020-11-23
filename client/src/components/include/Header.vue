@@ -15,8 +15,8 @@
             <b-navbar class="test justify-content-center" toggleable="lg" type="dark">
                 <b-navbar-nav class="navout">
                     <b-nav-item class="navitem"><router-link to="/">공지사항</router-link></b-nav-item>
-                    <b-nav-item class="navitem"><router-link to="/search">매물검색</router-link></b-nav-item>
-                    <b-nav-item class="navitem"><router-link to="/news">오늘의뉴스</router-link></b-nav-item>
+                    <b-nav-item class="navitem"><router-link to="/">매물검색</router-link></b-nav-item>
+                    <b-nav-item class="navitem"><router-link to="/">오늘의뉴스</router-link></b-nav-item>
                     <b-nav-item class="navitem"><router-link to="/bookmark">즐겨찾기</router-link></b-nav-item>
                     <b-nav-item class="navitem"><router-link to="/qna">QnA</router-link></b-nav-item>
                     <b-nav-item class="navitem"><router-link to="/mypage">마이페이지</router-link></b-nav-item>
