@@ -17,8 +17,10 @@ import QnaDetail from "@/views/QnaDetail.vue";
 import QnaList from "@/views/QnaList.vue";
 
 // 공지사항
-import Boards from "../views/Boards.vue";
+import Board from "../views/Board.vue";
 import BoardDetail from "../views/BoardDetail.vue";
+import BoardList from "../views/BoardList.vue";
+import BoardWrite from "../views/BoardWrite.vue";
 
 // 로그인, 회원 가입
 import Login from "@/views/Login.vue";
@@ -101,15 +103,30 @@ const routes = [
   },
   // 공지사항
   {
-    path: '/boards',
-    name: 'Boards',
-    component: Boards,
-  },
-  // 공지사항 상세화면
-  {
-    path: '/boarddetail',
-    name: 'BoardDetail',
-    component: BoardDetail,
+    path: '/board',
+    name: 'Board',
+    component: Board,
+    children: [
+      // 공지사항 목록
+      {
+        path: '',
+        name: 'BoardList',
+        component: BoardList
+      },
+      // 공지사항 작성
+      {
+        path: 'write',
+        name: 'BoardWrite',
+        component: BoardWrite,
+        beforeEnter: requireAuth()      // 관리자일때에만 작성가능
+      },
+      // 공지사항 상세보기
+      {
+        path: ':bnum',
+        name: 'BoardDetail',
+        component: BoardDetail
+      },
+    ]
   },
   // 로그인
   {
