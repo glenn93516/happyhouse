@@ -35,21 +35,42 @@
 </template>
 
 <script>
-import SearchNav from "@/components/SearchNav.vue";
 import SearchList from "@/components/SearchList.vue";
 import SearchDetail from "@/components/SearchDetail.vue";
 import GoogleMap from "@/components/GoogleMap.vue";
 
+import axios from "axios";
+
 export default {
     components: {
-        SearchNav,
         SearchList,
         SearchDetail,
         GoogleMap
     },
+    created: function(){
+        axios.get('http://localhost:8097/happyhouse/map/sido')
+            .then(({data}) => {
+                this.sidos = data;
+            })
+            .catch((error) => {
+                alert("시/도 정보를 가져오는 중 에러 발생");
+                console.log(error);
+            })
+    },
     data(){
         return {
-            showList: true
+            showList: true,
+            sidos: [],
+            guguns: [],
+            dongs: [],
+            searchConditions: {
+                sido: '',
+                gugun: '',
+                dong: '',
+                aptName: ''
+            },
+            dealList : [],
+            dealDetail: {}
         };
     },
     methods: {
