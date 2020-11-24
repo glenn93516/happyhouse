@@ -1,8 +1,8 @@
 <template>
-  <b-container style="width:300px; height: 400px;" class="container mt-5">
+  <b-container style="width:300px;" class="container mt-5">
     <h1 class="titlejoin" style="margin:30px;">Sign Up</h1>
     <hr />
-    <b-form class="joinform" @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form class="joinform" @submit.prevent="onSubmit" @reset="onReset" v-if="show">
       <b-form-group>
         <b-form-input
           id="input-1"
@@ -12,6 +12,7 @@
           placeholder="ID"
         ></b-form-input>
       </b-form-group>
+
       <b-form-group>
         <b-form-input
           id="input-2"
@@ -21,6 +22,7 @@
           placeholder="PW"
         ></b-form-input>
       </b-form-group>
+
       <b-form-group>
         <b-form-input
           id="input-3"
@@ -30,6 +32,7 @@
           placeholder="PW CHECK"
         ></b-form-input>
       </b-form-group>
+
       <b-form-group>
         <b-form-input
           id="input-4"
@@ -39,6 +42,7 @@
           placeholder="E-MAIL"
         ></b-form-input>
       </b-form-group>
+
       <b-form-group>
         <b-form-input
           id="input-5"
@@ -48,15 +52,17 @@
           placeholder="NAME"
         ></b-form-input>
       </b-form-group>
+
       <b-form-group>
         <b-form-input
           id="input-6"
           v-model="form.userphone"
           required
-          type="phonenumber"
+          type="tel"
           placeholder="PHONE"
         ></b-form-input>
       </b-form-group>
+
       <button class="join-btn" type="submit">가입하기</button>
       <button class="reset-btn" type="reset">초기화</button>
     </b-form>
@@ -81,7 +87,23 @@ export default {
   },
   methods: {
     onSubmit(event) {
-      event.preventDefault();
+      axios
+        .post('http://localhost:8097/happyhouse/members/join', this.form)
+        .then(({ data }) => {
+          if (data == 'success') {
+            alert('등록 성공');
+          } else if (data == 'fail') {
+            alert('등록 실패');
+          }
+          this.$router.push({
+            // 완료후 홈으로
+            path: '/',
+          });
+        })
+        .catch((error) => {
+          alert('등록 중 오류 발생');
+          console.log(error);
+        });
       alert(JSON.stringify(this.form));
     },
     onReset(event) {
@@ -101,23 +123,7 @@ export default {
     },
   },
   created() {
-    axios
-      .post('http://localhost:8097/happyhouse/members/join', this.form)
-      .then(({ data }) => {
-        if (data == 'success') {
-          alert('등록 성공');
-        } else if (data == 'fail') {
-          alert('등록 실패');
-        }
-        this.$router.push({
-          // 완료후 홈으로
-          path: '/',
-        });
-      })
-      .catch((error) => {
-        alert('등록 중 오류 발생');
-        console.log(error);
-      });
+    
   },
 };
 </script>
@@ -141,7 +147,7 @@ export default {
   padding: 10px 0;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 15px;
   margin: 4px;
   cursor: pointer;
@@ -163,7 +169,7 @@ export default {
   font-size: 14px;
   font-weight: 600;
   border: 1px solid white;
-  background-color: #f6f6f6;
+  background-color: white;
   border-radius: 0; /* iSO 둥근모서리 제거 */
   outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */
   -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
