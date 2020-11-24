@@ -10,6 +10,10 @@ import Main from "@/views/Main.vue";
 // 검색 페이지
 import Search from "@/views/Search.vue";
 
+// 즐겨찾기
+import Bookmark from "@/views/Bookmark.vue";
+import BookmarkList from "@/views/BookmarkList.vue";
+
 // Q & A
 import Qna from "../views/Qna.vue";
 import QnaWrite from "../views/QnaWrite.vue";
@@ -35,7 +39,6 @@ import Mypage from "@/views/Mypage.vue";
 import MypageInfo from "@/views/MypageInfo.vue";
 import MypageModify from "@/views/MypageModify.vue";
 import MypageManagement from "@/views/MypageManagement.vue"; 
-import Bookmark from "@/views/Bookmark.vue";
 
 Vue.use(VueRouter);
 
@@ -66,12 +69,6 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
-  },
-  // 즐겨찾기 페이지
-  {
-    path: '/bookmark',
-    name: 'Bookmark',
-    component: Bookmark
   },
   // 뉴스 게시판
   {
@@ -110,6 +107,19 @@ const routes = [
         name: 'QnaDetail',
         component: QnaDetail
       },
+    ]
+  },
+  // 즐겨찾기(북마크)
+  {
+    path: '/bookmark',
+    name: 'Bookmark',
+    component: Bookmark,
+    children: [
+      {
+        path: '',
+        name: 'BookmarkList',
+        component: BookmarkList
+      }
     ]
   },
   // 공지사항

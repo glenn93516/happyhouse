@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-    <router-view/>
+    <h1 class="boardtitle">공지사항</h1>
+    <router-view />
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
@@ -17,16 +16,21 @@ th {
   border: 1px solid #dddddd;
   text-align: center;
 }
-#writeBtn{
+#writeBtn {
   background-color: #8d9b46;
   text-align: right;
 }
-.container{
+.container {
   font-family: 'Nanum Gothic', sans-serif;
 }
-#title{
+#title {
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 900;
+  margin: 30px;
+}
+.boardtitle {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
   margin: 30px;
 }
 </style>

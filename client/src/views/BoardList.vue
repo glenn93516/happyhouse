@@ -1,6 +1,5 @@
 <template>
   <div id="list">
-    <h1 class="boardtitle">공지사항</h1>
     <hr />
     <div class="d-flex justify-content-center">
       <input
@@ -133,8 +132,7 @@ th {
   background-color: #8d9b46;
   text-align: right;
 }
-.container,
-.boardtitle {
+.container {
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 600;
   margin: 30px;

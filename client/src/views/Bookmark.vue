@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1 class="bookmarktitle">Bookmark</h1>
-    <hr />
-    <p>list</p>
+    <router-view />
   </div>
 </template>
 
