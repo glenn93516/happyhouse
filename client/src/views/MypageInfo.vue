@@ -7,26 +7,26 @@
     />
     <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px">
       <table
-        class="table"
+        class="table border-1"
         style="width: 600px; table-layout: fixed"
         id="myinfotable"
       >
-        <tr>
-          <th>아이디</th>
-          <td>{{getUserid}}</td>
-        </tr>
-        <tr>
-          <th>이름</th>
-          <td>{{getUsername}}</td>
-        </tr>
-        <tr>
-          <th>이메일</th>
-          <td>{{getUseremail}}</td>
-        </tr>
-        <tr>
-          <th>휴대전화</th>
-          <td>{{getUserphone}}</td>
-        </tr>
+        <b-row id="rowId">
+          <b-col>아이디</b-col>
+          <b-col>{{getUserid}}</b-col>
+        </b-row>
+        <b-row id="rowName">
+          <b-col>이름</b-col>
+          <b-col>{{getUsername}}</b-col>
+        </b-row>
+        <b-row id="rowEmail">
+          <b-col>이메일</b-col>
+          <b-col>{{getUseremail}}</b-col>
+        </b-row>
+        <b-row id="rowPhone">
+          <b-col>휴대전화</b-col>
+          <b-col>{{getUserphone}}</b-col>
+        </b-row>
       </table>
     </div>
   </div>
@@ -45,6 +45,22 @@ export default {
 <style>
 #mypageInfo__container{
   color: #707070;
+  font-family: 'Nanum Gothic', sans-serif; /* 폰트 상속 */
+  font-size: 20px;
+  font-weight: 550;
 }
 
+#rowId,
+#rowName,
+#rowEmail,
+#rowPhone {
+  color: #707070;
+  -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
+  -moz-appearance: none;
+  height: 3em; /* 높이값 초기화 */
+  line-height: normal; /* line-height 초기화 */
+  padding: 0.8em 0.5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
+  background-color: #fbf6f0;
+  border-radius: 0; /* iSO 둥근모서리 제거 */
+}
 </style>

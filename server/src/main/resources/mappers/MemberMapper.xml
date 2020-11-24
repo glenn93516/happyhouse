@@ -23,7 +23,7 @@
     </insert>
     <update id="updateOne" parameterType="MemberDto">
         UPDATE userinfo
-        SET userpw=#{userpw}, username=#{username}, useremail=#{useremail}, userphone=#{userphone}
+        SET username=#{username}, useremail=#{useremail}, userphone=#{userphone}
         WHERE userid=#{userid}
     </update>
     <update id="updateUser" parameterType="MemberDto">

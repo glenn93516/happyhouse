@@ -51,6 +51,7 @@ export default {
     color: #707070;
     font-family: 'Nanum Gothic', sans-serif;
     text-decoration: none;
+    font-size:18px;
     font-weight: 500;
 }
 .nav-item .navLink:hover{
