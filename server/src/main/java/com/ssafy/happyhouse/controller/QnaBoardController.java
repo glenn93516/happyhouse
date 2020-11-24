@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("/qna")
@@ -19,6 +20,11 @@ public class QnaBoardController {
     private QnaBoardService qnaBoardService;
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
+
+    @GetMapping("/all")
+    public List<QnaBoardDto> getAllQna(){
+        return qnaBoardService.getAll();
+    }
 
     @GetMapping("/list/{page}")
     public QnaBoardPageDto getList(@PathVariable("page") int page){

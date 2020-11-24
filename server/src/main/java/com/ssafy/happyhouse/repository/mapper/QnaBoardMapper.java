@@ -5,9 +5,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Mapper
 public interface QnaBoardMapper {
+    public List<QnaBoardDto> selectAll();
     public int selectTotalCount();
     public ArrayList<QnaBoardDto> selectPage(@Param("startRow") int startRow, @Param("COUNT_PER_PAGE") int COUNT_PER_PAGE);
     public int insertOne(QnaBoardDto dto);

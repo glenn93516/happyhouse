@@ -11,6 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface NoticeMapper {
+    public List<NoticeDto> selectAll();
     public int selectTotalCount();
     public ArrayList<NoticeDto> selectPage(@Param("startRow") int startRow, @Param("COUNT_PER_PAGE") int COUNT_PER_PAGE);
     public int write(NoticeDto dto);

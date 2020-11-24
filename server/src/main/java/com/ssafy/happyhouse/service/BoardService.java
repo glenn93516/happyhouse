@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface BoardService {
+    public List<NoticeDto> getAll();
     public NoticePageDto getPage(int page);
     public boolean writeNotice(NoticeDto dto, HttpSession session);
     public NoticeDto readNotice(int bnum);

@@ -20,6 +20,11 @@ public class NoticeBoardServiceImpl implements BoardService{
     private static final int COUNT_PER_PAGE = 10; // 페이지당 10개
 
     @Override
+    public List<NoticeDto> getAll() {
+        return noticeMapper.selectAll();
+    }
+
+    @Override
     public NoticePageDto getPage(int page) {
         int totalCnt = noticeMapper.selectTotalCount();
         int totalPageCnt = totalCnt / COUNT_PER_PAGE;
