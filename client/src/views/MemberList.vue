@@ -10,30 +10,14 @@
         <b-button variant="primary" @click="search" style="margin-right: 10px">검색</b-button>
       </div>
       <div class="d-flex justify-content-center" style="margin-top: 20px">
-        <table v-show="isSearch" style="width: 600px; table-layout: fixed" id="qnatable">
-          <thead>
-            <tr class="table-primary">
-              <th>아이디</th>
-              <th>비밀번호</th>
-              <th>이름</th>
-              <th>이메일</th>
-              <th>휴대전화</th>
-              <th>권한</th>
-              <th>선택</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="member in idCheck" :key="member.userid">
-              <td><router-link :to="'/mypage/' + member.userid">{{ member.userid }}</router-link></td>
-              <td>{{ member.userpwd }}</td>
-              <td>{{ member.username }}</td>
-              <td>{{ member.useremail }}</td>
-              <td>{{ member.userphone }}</td>
-              <td>{{ member.role }}</td>
-              <td><input type="checkbox" name="selected" id="selected"></td>
-            </tr>
-          </tbody>
-        </table>
+        <b-table 
+          :items="members"
+          :fields="fields"
+        >
+        <template #cell(select)="data">
+          <b-form-checkbox>{{data}}</b-form-checkbox>
+        </template>
+        </b-table>
       </div>
       <b-button id="deleteBtn" style="margin:20px;">계정삭제</b-button>
     </div>
@@ -46,6 +30,15 @@ export default {
     data(){
         return {
             members: [],
+            fields: [
+              {key: 'userid', label:'아이디'}, 
+              {key: 'userpw', label: '비밀번호'}, 
+              {key: 'username', label: '이름', sortable: true}, 
+              {key: 'useremail', label: '이메일'}, 
+              {key: 'userphone', label: '휴대전화'},
+              {key: 'role', label: '권한'}, 
+              {key: 'select', label: '선택'}
+            ],
             searchCondition: '',
             isSearch: true,
         };
@@ -65,9 +58,7 @@ export default {
     },
     created() {
         axios
-        .get(
-            'http://localhost:8097/happyhouse/members',
-        )
+        .get('http://localhost:8097/happyhouse/members')
         .then((response) => {
           console.log(response);
           this.members= response.data;
