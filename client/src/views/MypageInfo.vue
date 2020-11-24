@@ -14,7 +14,7 @@
       >
         <tr>
           <th>아이디</th>
-          <td>{{ getUserid }}</td>
+          <td>ssafy</td>
         </tr>
         <tr>
           <th>이름</th>
@@ -26,7 +26,7 @@
         </tr>
         <tr>
           <th>휴대전화</th>
-          <td>010-9305-1628</td>
+          <td>010-1993-0516</td>
         </tr>
       </table>
     </div>
