@@ -1,8 +1,7 @@
 <template>
   <div id="header">
-      <b-row fluid no-gutters class="h-100">
-        <b-col cols="9" class="d-flex justify-content-end align-items-center">
-          <b-nav id="menu" class="h-100">
+      <b-nav fluid no-gutters class="h-100 d-flex justify-content-center">
+          <b-navbar id="menu" class="h-100" align="center">
             <b-nav-item 
               v-for="menu in menus" :key="menu.path"
               :class="'h-100 d-flex align-items-center ' + (selected == menu.name ? 'active ' : ' ') + isMain"
@@ -12,19 +11,16 @@
               <router-link v-if="menu.name != 'main'" :to="menu.path">{{ menu.title }}</router-link>
               <router-link v-else :to="menu.path"><b-img :src="require('../../assets/uh_logo.svg')" width="40" height="40"></b-img></router-link>
             </b-nav-item>
-          </b-nav>
-        </b-col>
+          </b-navbar>
 
-        <b-col class="d-flex justify-content-end align-items-center">
-        <b-nav id="loginbar">
-          <b-nav-item v-if="isAuthenticated" :class="isMain" @click="logout">로그아웃</b-nav-item>
-          <b-nav-item v-else :class="isMain" 
+        <b-navbar id="loginbar h-100" align="right">
+          <b-nav-item v-if="isAuthenticated" :class="'h-100 d-flex align-items-center ' + (selected == 'logout' ? 'active ' : ' ') + isMain" @click="logout" @mouseover="mouseIn('logout')">로그아웃</b-nav-item>
+          <b-nav-item v-else :class="'h-100 d-flex align-items-center ' + (selected == 'login' ? 'active ' : ' ') + isMain"  @click="clickMenu('login')" @mouseover="mouseIn('login')"
             ><router-link to="/login">로그인</router-link></b-nav-item
           >
-          <b-nav-item  :class="isMain"><router-link to="/join">회원가입</router-link></b-nav-item>
-        </b-nav>
-        </b-col>
-      </b-row>
+          <b-nav-item  :class="'h-100 d-flex align-items-center ' + (selected == 'join' ? 'active ' : ' ') + isMain" @click="clickMenu('join')" @mouseover="mouseIn('join')"><router-link to="/join">회원가입</router-link></b-nav-item>
+        </b-navbar>
+      </b-nav>
   </div>
 </template>
 
@@ -51,8 +47,8 @@ export default {
         {name: 'board', path : '/board', title:'공지사항'},
         {name: 'search', path : '/search', title:'매물 검색'},
         {name: 'newlist', path : '/newslist', title:'오늘의 뉴스'},
-        {name: 'main', path : '/'},
         {name: 'bookmark', path : '/bookmark', title:'즐겨찾기'},
+        {name: 'main', path : '/'},
         {name: 'qna', path : '/qna', title:'QnA'},
         {name: 'mypage', path : '/mypage', title:'마이페이지'}
       ]
@@ -60,6 +56,7 @@ export default {
   },
   methods: {
       logout: function(){
+        this.selected = 'logout';
         this.$store.dispatch('LOGOUT');
         this.$router.push({
             path: '/'
