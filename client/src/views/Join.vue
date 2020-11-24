@@ -1,127 +1,65 @@
 <template>
-  <b-container class="fill-height">
-    <h1 class="titlejoin" style="margin:30px;">회원가입페이지</h1>
+  <b-container style="width:300px; height: 400px;" class="container mt-5">
+    <h1 class="titlejoin" style="margin:30px;">Sign Up</h1>
     <hr />
-    <div class="row h-100 justify-content-center align-items-center">
-      <b-form
-        style="width:40%;"
-        class="joinform row text-center"
-        @submit="onSubmit"
-        @reset="onReset"
-        v-if="show"
-      >
-        <b-row>
-          <b-col>
-            <b-form-group
-              id="input-group"
-              label="아이디"
-              label-for="input-1"
-            ></b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-input
-              id="input-1"
-              v-model="form.userid"
-              type="text"
-              required
-              placeholder="Enter id"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-form-group
-              id="input-group-2"
-              label="비밀번호"
-              label-for="input-2"
-            ></b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-input
-              id="input-2"
-              v-model="form.userpwd"
-              type="text"
-              required
-              placeholder="Enter password"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-form-group
-              id="input-group-3"
-              label="비밀번호 재확인"
-              label-for="input-3"
-            ></b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-input
-              id="input-3"
-              v-model="form.userpwdagain"
-              type="text"
-              required
-              placeholder="Enter password again"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-form-group
-              id="input-group-4"
-              label="이메일"
-              label-for="input-4"
-            ></b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-input
-              id="input-4"
-              v-model="form.useremail"
-              required
-              type="email"
-              placeholder="Enter email"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-form-group
-              id="input-group-5"
-              label="이름"
-              label-for="input-5"
-            ></b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-input
-              id="input-5"
-              v-model="form.username"
-              required
-              type="text"
-              placeholder="Enter name"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-form-group
-              id="input-group-5"
-              label="휴대전화"
-              label-for="input-6"
-            ></b-form-group>
-          </b-col>
-          <b-col>
-            <b-form-input
-              id="input-6"
-              v-model="form.userphone"
-              required
-              type="phonenumber"
-              placeholder="Enter phonenumber"
-            ></b-form-input>
-          </b-col>
-        </b-row>
-        <b-button type="submit" variant="primary">가입하기</b-button>
-        <b-button type="reset" variant="danger">초기화</b-button>
-      </b-form>
-    </div>
+    <b-form class="joinform" @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form-group>
+        <b-form-input
+          id="input-1"
+          v-model="form.userid"
+          type="text"
+          required
+          placeholder="ID"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group>
+        <b-form-input
+          id="input-2"
+          v-model="form.userpwd"
+          type="text"
+          required
+          placeholder="PW"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group>
+        <b-form-input
+          id="input-3"
+          v-model="form.userpwdagain"
+          type="text"
+          required
+          placeholder="PW CHECK"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group>
+        <b-form-input
+          id="input-4"
+          v-model="form.useremail"
+          required
+          type="email"
+          placeholder="E-MAIL"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group>
+        <b-form-input
+          id="input-5"
+          v-model="form.username"
+          required
+          type="text"
+          placeholder="NAME"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group>
+        <b-form-input
+          id="input-6"
+          v-model="form.userphone"
+          required
+          type="phonenumber"
+          placeholder="PHONE"
+        ></b-form-input>
+      </b-form-group>
+      <button class="join-btn" type="submit">가입하기</button>
+      <button class="reset-btn" type="reset">초기화</button>
+    </b-form>
   </b-container>
 </template>
 
@@ -191,5 +129,48 @@ export default {
 .titlejoin {
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 600;
+  color: #666666;
+}
+.join-btn,
+.reset-btn {
+  width: 100px;
+  height: 3em;
+  background-color: #33b3b6;
+  border: none;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px;
+  cursor: pointer;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
+}
+
+#input-1,
+#input-2,
+#input-3,
+#input-4,
+#input-5,
+#input-6 {
+  width: 100%; /* 원하는 너비 설정 */
+  height: 3em; /* 높이값 초기화 */
+  line-height: normal; /* line-height 초기화 */
+  padding: 0.8em 0.5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
+  font-family: 'Nanum Gothic', sans-serif; /* 폰트 상속 */
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid white;
+  background-color: #f6f6f6;
+  border-radius: 0; /* iSO 둥근모서리 제거 */
+  outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */
+  -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
+  -moz-appearance: none;
+  appearance: none;
+}
+.container {
+  align-self: center;
 }
 </style>
