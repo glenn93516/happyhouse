@@ -22,13 +22,13 @@
         <b-row>
             <b-col cols="5">
                 <!-- 매물 목록 -->
-                <search-list v-if="showList" v-on:showDetail="showDetail" v-bind:propDealList="dealList"></search-list>
+                <search-list v-if="showList" v-on:showDetail="showDetail" :propDealList="dealList"></search-list>
                 <!-- 상세보기 -->
-                <search-detail v-else v-on:showDealList="showDealList" v-bind:propDeal="dealDetail"></search-detail>
+                <search-detail v-else v-on:showDealList="showDealList" :propDeal="dealDetail"></search-detail>
             </b-col>
             <b-col cols="7">
                 <!-- 구글 지도 -->
-                <google-map v-bind:propDealList="dealList"></google-map>
+                <google-map :propDealList="dealList" :propShowList="showList" :propDeal="dealDetail"></google-map>
             </b-col>
         </b-row>
     </div>
@@ -100,6 +100,7 @@ export default {
                 })
                 .then(({data}) => {
                     this.dealList = data;
+                    this.showList = true;
                 })
                 .catch((error) => {
                     alert("검색 결과 가져오는 중 에러 발생");

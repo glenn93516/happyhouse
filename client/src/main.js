@@ -5,6 +5,8 @@ import VueSession from 'vue-session';
 import BootstrapVue from 'bootstrap-vue';
 import store from "./store";
 import axios from "axios";
+import * as VueGoogleMaps from "vue2-google-maps";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import "@/fontAwesomeIcon.js";
@@ -24,6 +26,12 @@ localAccessToken();
 Vue.config.productionTip = false;
 Vue.use(VueSession, sessionOptions);
 Vue.use(BootstrapVue);
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBvOiD8ZToSWL8zOBVYXKVGMsElkAD5qME',
+    libraries: 'places',
+  },
+})
 
 var sessionOptions = {
   persist: true
