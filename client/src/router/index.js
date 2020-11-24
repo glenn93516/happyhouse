@@ -37,16 +37,23 @@ Vue.use(VueRouter);
 
 const requireAuth = () => (to, from, next) => {
   const nextRoute = to.path;
+  
   let token = axios.defaults.headers.common["auth-token"];
-
-  // TODO : axios로 Spring boot 서버에 요청 보내서 현재 토큰 유효한지 확인하는 작업 필요
-  console.log("requireAuth() called");
-  if (token != undefined && token.length) {
-    store.commit("setAuth", token);
-    return next();
+  
+  if (token != null && token.length) {
+    axios.get('http://localhost:8097/happyhouse/members/info')
+      .then(({ data }) => {
+        if (data.exp > (Date.now() / 1000)) {
+          // auth-token 유효한 경우
+          store.commit("setAuth", token);
+          return next();
+        } else {
+          next("/login");
+        }
+      })
   } else {
-    next("/login" + nextRoute);
-  } 
+    next("/login");
+  }
 }
 
 const routes = [

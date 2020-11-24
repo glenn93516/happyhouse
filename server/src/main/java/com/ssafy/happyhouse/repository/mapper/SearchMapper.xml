@@ -9,6 +9,7 @@
         FROM housedeal hd, houseinfo hi, baseaddress ba
         WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
         AND hi.aptName LIKE CONCAT('%', #{aptName}, '%')
+        LIMIT 10
     </select>
 
     <select id="selectByDong" resultMap="dealInfo">
@@ -19,6 +20,7 @@
         FROM housedeal hd, houseinfo hi, baseaddress ba
         WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
             AND hi.code=#{dong}
+        LIMIT 10
     </select>
 
     <select id="selectByAptDong" resultMap="dealInfo">
@@ -30,6 +32,7 @@
         WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
         AND hi.aptName LIKE CONCAT('%', #{aptName}, '%')
         AND hi.code=#{dong}
+        LIMIT 10
     </select>
 
     <select id="selctAll" resultMap="dealInfo">
@@ -39,7 +42,7 @@
             dongcode, city, ba.dong ba_dong, ba.lat ba_lat, ba.lng ba_lng
         FROM housedeal hd, houseinfo hi, baseaddress ba
         WHERE hd.houseinfo_id=hi.houseinfo_id AND hi.code=ba.dongcode
-        LIMIT 20
+        LIMIT 10
     </select>
 
     <resultMap id="dealInfo" type="HouseDealDto">

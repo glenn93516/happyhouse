@@ -24,11 +24,11 @@
                 <!-- 매물 목록 -->
                 <search-list v-if="showList" v-on:showDetail="showDetail" v-bind:propDealList="dealList"></search-list>
                 <!-- 상세보기 -->
-                <search-detail v-else v-bind:propDeal="dealDetail"></search-detail>
+                <search-detail v-else v-on:showDealList="showDealList" v-bind:propDeal="dealDetail"></search-detail>
             </b-col>
             <b-col cols="7">
                 <!-- 구글 지도 -->
-                <google-map></google-map>
+                <google-map v-bind:propDealList="dealList"></google-map>
             </b-col>
         </b-row>
     </div>
@@ -111,6 +111,9 @@ export default {
             this.showList = false;
 
             // TODO : 구글 지도에 선택한 거래 정보 위치 넘기는 과정 추가해야함
+        },
+        showDealList: function(){
+            this.showList = true;
         }
 
     }

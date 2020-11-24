@@ -2,6 +2,7 @@ package com.ssafy.happyhouse.service;
 
 import com.ssafy.happyhouse.repository.dto.MemberDto;
 import io.jsonwebtoken.*;
+import org.apache.jasper.tagplugins.jstl.core.Catch;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -34,12 +35,24 @@ public class JwtService {
     }
 
 //  jwt 토큰 분석
-    public Map<String, Object> get(String jwt){
+    public Map<String, Object> get(String jwt) throws ExpiredJwtException {
         Jws<Claims> claims = null;
 
-        claims = Jwts.parser().setSigningKey(signature.getBytes()).parseClaimsJws(jwt);
-        System.out.println(claims);
+        try {
+            claims = Jwts.parser().setSigningKey(signature.getBytes()).parseClaimsJws(jwt);
+        } catch (ExpiredJwtException e){
+            throw e;
+        }
 
         return claims.getBody();
+    }
+
+//  전달받은 토큰 제대로 된 것인가 확인
+    public void checkValid(String jwt) throws ExpiredJwtException {
+        try {
+            Jwts.parser().setSigningKey(signature.getBytes()).parseClaimsJws(jwt);
+        } catch(ExpiredJwtException e){
+            throw e;
+        }
     }
 }

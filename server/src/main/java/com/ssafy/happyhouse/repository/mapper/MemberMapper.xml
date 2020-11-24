@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssafy.happyhouse.repository.mapper.MemberMapper">
     <select id="checkUser" parameterType="MemberDto" resultType="MemberDto">
-        SELECT userid, userpw, username, useremail, userphone, role
+        SELECT userid, username, useremail, userphone, role
         FROM userinfo
         WHERE userid=#{userid} AND userpw=#{userpw}
     </select>

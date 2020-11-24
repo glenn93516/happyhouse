@@ -9,7 +9,10 @@ export default new Vuex.Store({
         isAuthenticated: false,
         accessToken: null,
         userid: "",
-        username: ""
+        username: "",
+        useremail: "",
+        userphone: "",
+        role: ''
     },
     getters: {
         getAccessToken(state) {
@@ -21,15 +24,24 @@ export default new Vuex.Store({
         getUsername(state) {
             return state.username;
         },
+        getUseremail(state) {
+            return state.useremail;
+        },
+        getUserphone(state) {
+            return state.userphone;
+        },
         getIsAuthenticated(state) {
             return state.isAuthenticated;
-        }
+        },
     },
     mutations: {
         LOGIN(state, payload) {
             state.accessToken = payload["auth-token"];
             state.userid = payload["userid"];
             state.username = payload["username"];
+            state.useremail = payload["useremail"];
+            state.userphone = payload["userphone"];
+            state.role = payload["role"];
             state.isAuthenticated = true;
             localStorage["auth-token"] = payload["auth-token"];
         },
@@ -37,11 +49,23 @@ export default new Vuex.Store({
             state.accessToken = null;
             state.userid = "";
             state.username = "";
+            state.userphone = "";
+            state.useremail = "";
+            state.role = '';
             state.isAuthenticated = false;
-            localStorage["auth-token"] = "";
+            localStorage.removeItem('auth-token');
         },
         setAuth(state, payload) {
             state.accessToken = payload;
+        },
+        setInfo(state, payload) {
+            state.accessToken = payload["auth-token"];
+            state.userid = payload["userid"];
+            state.username = payload["username"];
+            state.useremail = payload["useremail"];
+            state.userphone = payload["userphone"];
+            state.role = payload["role"];
+            state.isAuthenticated = true;
         }
     },
     actions: {
@@ -54,7 +78,15 @@ export default new Vuex.Store({
         },
         LOGOUT(context) {
             context.commit("LOGOUT");
-            axios.defaults.headers.common["auth-token"] = undefined;
+            axios.defaults.headers.common["auth-token"] = null;
+        },
+        setInfo(context) {
+            axios.get('http://localhost:8097/happyhouse/members/info')
+                .then(({ data }) => {
+                    if (data.exp > (Date.now() / 1000)) {
+                        context.commit('setInfo', data.user);
+                    }
+                })
         }
     },
     modules: {}

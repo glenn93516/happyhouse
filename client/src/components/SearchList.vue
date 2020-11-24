@@ -17,7 +17,7 @@
 
         <!-- list type view -->
         <b-container v-if="viewType === 'list'">
-            <b-card no-body class="ml-5 my-1 border-0" v-for="deal in propDealList" :key="deal.dealId">
+            <b-card no-body class="ml-5 my-1 border-0" v-for="deal in propDealList" :key="deal.dealId" @click="clickDeal(deal)">
                 <b-row no-gutters>
                     <b-col md="3">
                         <b-card-img :src="require('../assets/ILgfyLB9u3IiZnS6GcW9t_SaeoeI.jpg')" height="100" class="rounded-2"></b-card-img>
@@ -43,6 +43,8 @@
                     :img-src="require('../assets/ILgfyLB9u3IiZnS6GcW9t_SaeoeI.jpg')"
                     img-height="100"
                     class="my-1 ml-1 border-0"
+                    style="max-width: 10rem;"
+                    @click="clickDeal(deal)"
                 >
                 </b-card>
             </b-card-group>
@@ -117,6 +119,9 @@ export default {
                     })
                     break;
             }
+        },
+        clickDeal: function(deal){
+            this.$emit('showDetail', deal);
         }
     }
 }

@@ -6,9 +6,7 @@
 
 <script>
 export default {
-    props: {
-        'qnaId': Number
-    }
+    props: ['qnaId']
 }
 </script>
 
