@@ -59,15 +59,15 @@ export default {
     ...mapGetters['getIsAuthenticated'],
     isAuthenticated() {
       return this.$store.state.isAuthenticated;
-    },
-    methods: {
-        logout: function(){
-            this.$store.dispatch('LOGOUT');
-            this.$router.push({
-                path: '/'
-            });
-        }
     }
+  },
+  methods: {
+      logout: function(){
+        this.$store.dispatch('LOGOUT');
+        this.$router.push({
+            path: '/'
+        });
+      }
   }
 }
 </script>
