@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class QnaBoardServiceImpl implements QnaBoardService {
@@ -15,6 +16,11 @@ public class QnaBoardServiceImpl implements QnaBoardService {
     @Autowired
     private QnaBoardMapper qnaBoardMapper;
     private static final int COUNT_PER_PAGE = 10; // 한 페이지당 질문 10개
+
+    @Override
+    public List<QnaBoardDto> getAll() {
+        return qnaBoardMapper.selectAll();
+    }
 
     @Override
     public QnaBoardPageDto getPage(int page) {

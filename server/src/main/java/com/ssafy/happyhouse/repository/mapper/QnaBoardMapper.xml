@@ -4,7 +4,15 @@
     <select id="selectTotalCount" resultType="int">
         SELECT COUNT(*) FROM qna_board;
     </select>
-
+    <select id="selectAll" resultMap="QnaBoardMap">
+        SELECT
+            q.qna_id qnaId, q.qna_title qnaTitle, q.qna_writer qnaWriter, q.qna_content qnaContent, q.qna_writedate qnaWriteDate, q.qna_type qnaType,
+            r.qna_reply_id qnaReplyId, r.qna_reply_writer qnaReplyWriter, r.qna_reply_content qnaReplyContent, r.qna_reply_writedate qnaReplyWriteDate
+        FROM qna_board q
+        LEFT JOIN qna_reply r
+        ON q.qna_id = r.qna_board_id
+        ORDER BY qna_id
+    </select>
     <select id="selectPage" resultMap="QnaBoardMap">
         SELECT
             q.qna_id qnaId, q.qna_title qnaTitle, q.qna_writer qnaWriter, q.qna_content qnaContent, q.qna_writedate qnaWriteDate, q.qna_type qnaType,

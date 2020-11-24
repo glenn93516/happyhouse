@@ -22,6 +22,11 @@ public class BoardController {
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
 
+    @GetMapping("/all")
+    public List<NoticeDto> getAll(){
+        return boardService.getAll();
+    }
+
     @GetMapping
     public NoticePageDto getList(@RequestParam(value="page", defaultValue="1") int page){
         return boardService.getPage(page);

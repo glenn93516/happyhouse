@@ -5,6 +5,11 @@
         SELECT COUNT(*) FROM noticeboard;
     </select>
 
+    <select id="selectAll" resultType="NoticeDto">
+        SELECT * FROM noticeboard
+        ORDER BY bnum
+    </select>
+
     <select id="selectPage" resultType="NoticeDto">
         SELECT * FROM noticeboard
         ORDER BY bnum
