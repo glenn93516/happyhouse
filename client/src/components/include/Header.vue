@@ -1,53 +1,30 @@
 <template>
   <div id="header">
-    <b-nav class="d-flex justify-content-between align-items-center">
-      <b-nav>
-        <b-nav-item
-          ><router-link to="/"
-            ><img
-              src="./../../assets/logo2.png"
-              style="margin-left:30px;"/></router-link
-        ></b-nav-item>
-        <b-nav-item
-          ><router-link to="/"
-            ><img
-              src="./../../assets/newlogo.png"
-              style="margin-top:8px;"
-              height="50px"/></router-link
-        ></b-nav-item>
-      </b-nav>
-      <b-nav id="loginbar">
-        <b-nav-item v-if="isAuthenticated" @click="logout">로그아웃</b-nav-item>
-        <b-nav-item v-else
-          ><router-link to="/login">로그인</router-link></b-nav-item
-        >
-        <b-nav-item><router-link to="/join">회원가입</router-link></b-nav-item>
-      </b-nav>
-    </b-nav>
-    <div class="bottom">
-      <b-navbar class="test justify-content-center" toggleable="lg" type="dark">
-        <b-navbar-nav class="navout">
-          <b-nav-item class="navitem"
-            ><router-link to="/board">공지사항</router-link></b-nav-item
+      <b-row fluid no-gutters class="h-100">
+        <b-col cols="9" class="d-flex justify-content-end align-items-center">
+          <b-nav id="menu" class="h-100">
+            <b-nav-item 
+              v-for="menu in menus" :key="menu.path"
+              :class="'h-100 d-flex align-items-center ' + (selected == menu.name ? 'active' : '')"
+              @click="clickMenu(menu.name)"
+              @mouseover="mouseIn(menu.name)"
+            >
+              <router-link v-if="menu.name != 'main'" :to="menu.path">{{ menu.title }}</router-link>
+              <router-link v-else :to="menu.path"><b-img :src="require('../../assets/uh_logo.svg')" width="40" height="40"></b-img></router-link>
+            </b-nav-item>
+          </b-nav>
+        </b-col>
+
+        <b-col class="d-flex justify-content-end align-items-center">
+        <b-nav id="loginbar">
+          <b-nav-item v-if="isAuthenticated" @click="logout">로그아웃</b-nav-item>
+          <b-nav-item v-else
+            ><router-link to="/login">로그인</router-link></b-nav-item
           >
-          <b-nav-item class="navitem"
-            ><router-link to="/search">매물검색</router-link></b-nav-item
-          >
-          <b-nav-item class="navitem"
-            ><router-link to="/newslist">오늘의뉴스</router-link></b-nav-item
-          >
-          <b-nav-item class="navitem"
-            ><router-link to="/bookmark">즐겨찾기</router-link></b-nav-item
-          >
-          <b-nav-item class="navitem"
-            ><router-link to="/qna">QnA</router-link></b-nav-item
-          >
-          <b-nav-item class="navitem"
-            ><router-link to="/mypage">마이페이지</router-link></b-nav-item
-          >
-        </b-navbar-nav>
-      </b-navbar>
-    </div>
+          <b-nav-item><router-link to="/join">회원가입</router-link></b-nav-item>
+        </b-nav>
+        </b-col>
+      </b-row>
   </div>
 </template>
 
@@ -61,39 +38,53 @@ export default {
       return this.$store.state.isAuthenticated;
     }
   },
+  data(){
+    return {
+      selected: '',
+      menus: [
+        {name: 'board', path : '/board', title:'공지사항'},
+        {name: 'search', path : '/search', title:'매물 검색'},
+        {name: 'newlist', path : '/newslist', title:'오늘의 뉴스'},
+        {name: 'main', path : '/'},
+        {name: 'bookmark', path : '/bookmark', title:'즐겨찾기'},
+        {name: 'qna', path : '/qna', title:'QnA'},
+        {name: 'mypage', path : '/mypage', title:'마이페이지'}
+      ]
+    };
+  },
   methods: {
       logout: function(){
         this.$store.dispatch('LOGOUT');
         this.$router.push({
             path: '/'
         });
-      }
+      },
+      clickMenu : function(name){
+        this.selected = name;
+      },
+      mouseIn : function(name){
+        this.selected = name;
+      },
   }
 }
 </script>
 
-<style>
-.text {
-  color: #647409;
+<style scoped>
+#header {
+  background-color : transparent;
+  height: 20vh;
 }
-.test {
-  background-color: #d4dca3;
-}
-.navitem {
-  font-family: 'Nanum Gothic', sans-serif;
+
+.nav-item a{
+  color: #fbf6f0;
   text-decoration: none;
   font-weight: 800;
-  display: inline-block;
-  margin-right: 20px;
-  margin-left: 50px;
-  color: white;
 }
-.navout {
-  font-family: 'Nanum Gothic', sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
+.nav-item.active, .nav-item.active a{
+  color: #707070;
+  transition: all 500ms ease-in-out;
 }
+
 #loginbar {
   font-family: 'Nanum Gothic', sans-serif;
 }
