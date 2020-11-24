@@ -1,7 +1,5 @@
 <template>
     <div id="list">
-      <h1 style="margin:30px;">회원관리(관리자모드)</h1>
-      <hr/>
       <div class="d-flex justify-content-center">
         <input
           v-on:keyup.enter="search"
@@ -52,7 +50,7 @@ export default {
             isSearch: true,
         };
     },
-    method: {
+    methods: {
         search() {
             this.searchCondition = this.$refs.searchBar.value;
             this.isSearch = true;
@@ -68,13 +66,16 @@ export default {
     created() {
         axios
         .get(
-            'http://localhose:8097/happyhouse/members/list/1',
-            this.searchCondition
+            'http://localhost:8097/happyhouse/members',
         )
         .then((response) => {
-            this.members = response.data.memberList;
+          console.log(response);
+          this.members= response.data;
         })
-        .catch()
+        .catch((error) => {
+          alert("회원 목록 가져오는 중 오류 발생");
+          console.log(error);
+        })
         .finally();
     }
 }

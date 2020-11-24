@@ -2,7 +2,10 @@ package com.ssafy.happyhouse.service;
 
 import com.ssafy.happyhouse.repository.dto.MemberDto;
 
+import java.util.List;
+
 public interface MemberService {
+    public List<MemberDto> getUsers();
     public MemberDto loginCheck(MemberDto member);
     public boolean join(MemberDto member);
     public boolean update(MemberDto member);

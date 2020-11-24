@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h1 class="mypagetitle">My Page</h1>
+    <div id="mypage__container">
         <mypage-nav></mypage-nav>
         <router-view />
     </div>
@@ -18,9 +17,8 @@ export default {
 </script>
 
 <style>
-.mypagetitle{
+#mypage__container {
     font-family: 'Nanum Gothic', sans-serif;
-    font-weight: 900;
-    margin: 30px;
+    color: #707070;
 }
 </style>

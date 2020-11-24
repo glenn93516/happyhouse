@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <h1>회원정보수정</h1>
+  <div id="mypageModify__container">
     <img
       src="./../assets/profile.png"
       width="300px;"
-      style="margin-left:30px;"
+      style="margin-left:30px; margin-top:20px; margin-bottom:20px;"
     />
-    <div class="d-flex justify-content-center" style="margin-top: 20px">
+    <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom:20px;">
       <table
         class="table"
         style="width: 600px; table-layout: fixed"
@@ -14,12 +13,12 @@
       >
         <tr>
           <th>아이디</th>
-          <td>ssafy</td>
+          <td>{{getUserid}}</td>
         </tr>
         <tr>
           <th>이름</th>
           <td>
-            이지은
+            {{getUsername}}
             <input
               type="button"
               id="emailModify"
@@ -32,7 +31,7 @@
         <tr>
           <th>이메일</th>
           <td>
-            ssafy@gmail.com
+            {{getUseremail}}
             <input
               type="button"
               id="emailModify"
@@ -45,7 +44,7 @@
         <tr>
           <th>휴대전화</th>
           <td>
-            010-9305-1628
+            {{getUserphone}}
             <input
               type="button"
               id="phoneModify"
@@ -61,7 +60,12 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+export default {
+  computed: {
+    ...mapGetters(['getUserid', 'getUsername', 'getUseremail', 'getUserphone']),
+  },
+};
 </script>
 
 <style></style>

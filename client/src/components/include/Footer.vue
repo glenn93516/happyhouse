@@ -20,7 +20,6 @@
 <script>
 
 export default {
-
 }
 </script>
 <style scoped>
@@ -30,9 +29,9 @@ export default {
     font-family: 'Nanum Gothic', sans-serif;
 }
 #nav a {
-  color: #fbf6f0;
-  text-decoration: none;
-  font-weight: 800;
+    color: #fbf6f0;
+    text-decoration: none;
+    font-weight: 800;
 }
 #nav a:hover {
     color: #707070;

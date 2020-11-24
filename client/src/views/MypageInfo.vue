@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <h1>내페이지 정보</h1>
+  <div id="mypageInfo__container">
     <img
       src="./../assets/profile.png"
       width="300px;"
-      style="margin-left:30px;"
+      style="margin-left:30px; margin-top:20px; margin-bottom:20px;"
     />
-    <div class="d-flex justify-content-center" style="margin-top: 20px">
+    <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px">
       <table
         class="table"
         style="width: 600px; table-layout: fixed"
@@ -14,19 +13,19 @@
       >
         <tr>
           <th>아이디</th>
-          <td>ssafy</td>
+          <td>{{getUserid}}</td>
         </tr>
         <tr>
           <th>이름</th>
-          <td>이지은</td>
+          <td>{{getUsername}}</td>
         </tr>
         <tr>
           <th>이메일</th>
-          <td>ssafy@gmail.com</td>
+          <td>{{getUseremail}}</td>
         </tr>
         <tr>
           <th>휴대전화</th>
-          <td>010-1993-0516</td>
+          <td>{{getUserphone}}</td>
         </tr>
       </table>
     </div>
@@ -38,9 +37,14 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters[('getUserid', 'getUsername', 'getUseremail', 'getUserphone')],
+    ...mapGetters(['getUserid', 'getUsername', 'getUseremail', 'getUserphone']),
   },
 };
 </script>
 
-<style></style>
+<style>
+#mypageInfo__container{
+  color: #707070;
+}
+
+</style>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -62,6 +63,10 @@ public class MemberController {
         return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.ACCEPTED);
     }
 
+    @GetMapping
+    public List<MemberDto> getUsers(){
+        return memberService.getUsers();
+    }
 
     @PostMapping("/join")
     public ResponseEntity<String> join(@RequestBody MemberDto member){

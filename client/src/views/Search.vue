@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="search__container">
         <!-- 검색 창 -->
         <b-form inline class="d-flex justify-content-center my-2" @submit.prevent="onSubmit">
             <b-form-select class="mx-2" v-model="searchConditions.sido" @change="getGugun">
@@ -122,5 +122,7 @@ export default {
 </script>
 
 <style>
-
+    #search__container{
+        color: #707070;
+    }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="newlist__container">
     <h1 class="newstitle">오늘의 뉴스</h1>
     <hr />
     <div style="margin:50px;">
@@ -52,11 +52,45 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  data(){
+    return {
+      tmpToken : '',
+      newsList : []
+    };
+  },
+  created(){
+    this.tmpToken = axios.defaults.headers.common["auth-token"];
+    delete axios.defaults.headers.common["auth-token"];
+    axios.get('https://openapi.naver.com/v1/search/news.json', {
+        params : {
+          'query': '부동산',
+          'display': 5
+        },
+        headers: {
+          'X-Naver-Client-Id': 'qvRxDFfzMefBdQSpHtqK',
+          'X-Naver-Client-Secret': 'kuIdFXfcC9',
+          'Access-Control-Allow-Origin': 'http://localhost:8080/',
+          "Access-Control-Allow-Credentials": "true"
+
+        }
+      })
+      .then((response) => {
+        console.log(response);
+      })
+  }
+};
 </script>
 
 <style>
+#newslist__container{
+  color: #707070;
+  font-family: 'Nanum Gothic', sans-serif;
+}
 .newstitle {
+  color: #707070;
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 900;
   margin: 30px;

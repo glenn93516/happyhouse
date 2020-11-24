@@ -114,6 +114,7 @@ const routes = [
     path: '/bookmark',
     name: 'Bookmark',
     component: Bookmark,
+    beforeEnter: requireAuth(),
     children: [
       {
         path: '',
@@ -185,6 +186,7 @@ const routes = [
     path: '/mypage',
     name: 'Mypage',
     component: Mypage,
+    beforeEnter: requireAuth(),
     children: [
       // 내 정보 보기
       {

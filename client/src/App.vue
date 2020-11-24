@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <homeheader></homeheader>
+  <div id="app" :class="currComp=='Main' ? 'main' : 'notMain'">
+    <homeheader :currComp="currComp"></homeheader>
     <router-view />
     <homefooter></homefooter>
   </div>
@@ -12,9 +12,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* color: #FFFFFF; */
+}
+
+#app.main {
   background-color: #39BFBF;
-  /* background-color: #39BFBF; */
+}
+
+#app.notMain {
+  background-color: #fbf6f0;
 }
 
 #nav {
@@ -33,6 +38,11 @@ import homeheader from "@/components/include/Header.vue";
 export default {
   components : {
     homefooter, homeheader,
+  },
+  computed: {
+    currComp(){
+      return this.$route.name;// 현재 보여주는 화면 뭔지. (메인화면이랑 다른 화면이랑 스타일 다르게)
+    }
   }
 }
 </script>

@@ -5,7 +5,7 @@
           <b-nav id="menu" class="h-100">
             <b-nav-item 
               v-for="menu in menus" :key="menu.path"
-              :class="'h-100 d-flex align-items-center ' + (selected == menu.name ? 'active' : '')"
+              :class="'h-100 d-flex align-items-center ' + (selected == menu.name ? 'active ' : ' ') + isMain"
               @click="clickMenu(menu.name)"
               @mouseover="mouseIn(menu.name)"
             >
@@ -17,11 +17,11 @@
 
         <b-col class="d-flex justify-content-end align-items-center">
         <b-nav id="loginbar">
-          <b-nav-item v-if="isAuthenticated" @click="logout">로그아웃</b-nav-item>
-          <b-nav-item v-else
+          <b-nav-item v-if="isAuthenticated" :class="isMain" @click="logout">로그아웃</b-nav-item>
+          <b-nav-item v-else :class="isMain" 
             ><router-link to="/login">로그인</router-link></b-nav-item
           >
-          <b-nav-item><router-link to="/join">회원가입</router-link></b-nav-item>
+          <b-nav-item  :class="isMain"><router-link to="/join">회원가입</router-link></b-nav-item>
         </b-nav>
         </b-col>
       </b-row>
@@ -32,10 +32,16 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  props: [
+    'currComp'
+  ],
   computed: {
     ...mapGetters['getIsAuthenticated'],
     isAuthenticated() {
       return this.$store.state.isAuthenticated;
+    },
+    isMain(){
+      return this.currComp == 'Main' ? 'main' : 'notMain';
     }
   },
   data(){
@@ -75,13 +81,24 @@ export default {
   height: 20vh;
 }
 
-.nav-item a{
+.nav-item.main a{
   color: #fbf6f0;
   text-decoration: none;
   font-weight: 800;
 }
-.nav-item.active, .nav-item.active a{
+.nav-item.active.main, .nav-item.active.main a{
   color: #707070;
+  transition: all 500ms ease-in-out;
+}
+
+.nav-item.notMain a{
+  color: #707070;
+  text-decoration: none;
+  font-weight: 800;
+}
+.nav-item.notMain.active, .nav-item.notMain.active a{
+  color: #fbf6f0;
+  background-color: #39BFBF;
   transition: all 500ms ease-in-out;
 }
 

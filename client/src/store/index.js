@@ -30,6 +30,9 @@ export default new Vuex.Store({
         getUserphone(state) {
             return state.userphone;
         },
+        getRole(state) {
+            return state.role;
+        },
         getIsAuthenticated(state) {
             return state.isAuthenticated;
         },
