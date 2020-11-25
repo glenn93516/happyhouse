@@ -6,6 +6,7 @@
         ref="searchBar"
         type="text"
         style="width: 300px; margin-right: 10px"
+        class="inputform"
       />
       <b-button class="searchBtn" @click="search" style="margin-right: 10px"
         >검색</b-button
@@ -57,7 +58,7 @@
     ></b-pagination>
 
     <router-link to="/qna/write"
-      ><b-button id="writeBtn">글쓰기</b-button></router-link
+      ><b-button id="writeBtn" style="margin: 20px;">글쓰기</b-button></router-link
     >
   </div>
 </template>

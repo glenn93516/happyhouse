@@ -1,5 +1,5 @@
 <template>
-  <div class="p-3 mb-2 text-white footer">
+  <div class="p-3 text-white footer">
     <div id="nav">
       <router-link to="/search">회사소개</router-link> |
       <router-link to="/regist">채용정보</router-link> |

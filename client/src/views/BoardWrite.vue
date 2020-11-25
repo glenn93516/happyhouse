@@ -1,20 +1,39 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <div style="margin-top: 20px" class="d-flex justify-content-center">
-      <table style="width:70%;">
+      <table class="table border-0 " style="width:70%;">
         <tr>
-          <td>제목</td>
-          <td><b-form-input v-model="board.btitle" type="text" /></td>
+          <th class="thth align-middle">제목</th>
+          <td class="tdtd">
+            <input
+              v-model="board.btitle"
+              class="inputform"
+              type="text"
+            />
+          </td>
         </tr>
         <tr>
-          <td>내용</td>
-          <td><b-form-input style="height:200px;" v-model="board.bcontent" type="text" /></td>
+          <th class="thth align-middle" align="center">
+            내용
+          </th>
+          <td class="tdtd">
+            <input
+              class="inputform"
+              style="height:200px;"
+              v-model="board.bcontent"
+              type="text"
+            />
+          </td>
         </tr>
       </table>
     </div>
-    <div class="d-flex justify-content-center" style="margin-top: 10px">
-      <b-button variant="primary" @click="add">글쓰기</b-button>
-      <b-button variant="danger" @click="cancel">취소</b-button>
+    <div>
+      <button @click="add" id="addBtn" style="margin:20px;">
+        글쓰기
+      </button>
+      <router-link to="/board"
+        ><button id="listBtn" style="margin:20px;">취소</button></router-link
+      >
     </div>
   </div>
 </template>
@@ -35,7 +54,6 @@ export default {
   },
   methods: {
     add() {
-      console.log(this.board);
       axios
         .post('http://localhost:8097/happyhouse/boards', this.board)
         .then((response) => {
@@ -50,9 +68,6 @@ export default {
         })
         .finally();
     },
-    cancel(){
-      
-    }
   },
 };
 </script>
@@ -63,5 +78,21 @@ td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
+}
+#addBtn {
+  width: 100px;
+  height: 3em;
+  background-color: #33b3b6;
+  border: none;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 15px;
+  margin: 4px;
+  cursor: pointer;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
 }
 </style>

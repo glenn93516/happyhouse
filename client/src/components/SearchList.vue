@@ -16,7 +16,7 @@
         </b-container>
 
         <!-- list type view -->
-        <b-container v-if="viewType === 'list'">
+        <b-container v-if="viewType === 'list'" class="overflow-auto my-3" style="height: 700px; padding: 5% 0;">
             <b-card no-body class="ml-5 my-1 border-0" v-for="deal in propDealList" :key="deal.dealId" @click="clickDeal(deal)">
                 <b-row no-gutters>
                     <b-col md="3">

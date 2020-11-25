@@ -16,6 +16,7 @@
 
 #app.main {
   background-color: #39bfbf;
+  transition: all 800ms ease-in-out;
 }
 
 #app.notMain {

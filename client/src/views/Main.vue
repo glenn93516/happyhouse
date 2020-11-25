@@ -19,9 +19,10 @@ export default {
   font-family: 'Nanum Gothic', sans-serif;
   font-size: 120px;
   font-weight: 1000;
-  height: 60vh;
+  height: 80vh;
   /* color: #aff1dd; */
   color: white;
+  transition: all 500ms ease-in-out;
 }
 .logotitle {
   line-height: 100%;
