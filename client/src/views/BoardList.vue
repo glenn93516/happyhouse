@@ -34,7 +34,7 @@
           <tr v-for="(board, index) in titleCheck" :key="index">
             <td>{{ (curPage - 1) * 10 + index + 1 }}</td>
             <td>
-              <router-link :to="'/board/' + board.bnum">{{
+              <router-link class="titleLink" :to="'/board/' + board.bnum">{{
                 board.btitle
               }}</router-link>
             </td>
@@ -121,7 +121,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 table,
 td,
 th {
@@ -189,5 +189,9 @@ th {
   -moz-appearance: none;
   appearance: none;
   margin-top: 0.4em;
+}
+a.titleLink {
+  text-decoration: none;
+  color: #707070;
 }
 </style>
