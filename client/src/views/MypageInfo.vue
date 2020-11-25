@@ -6,17 +6,15 @@
       style="margin-left:30px; margin-top:20px; margin-bottom:20px;"
     />
     <div
-      class="d-flex justify-content-center"
+      class="d-flex justify-content-center border-0"
       style="margin-top: 20px; margin-bottom: 20px;border-style:none;"
     >
       <table
-        class="table table-borderless"
+        class="table table-borderless border-0"
         style="width: 600px; table-layout: fixed;"
         id="myinfotable"
-        cellspacing="0"
-        cellpadding="0"
       >
-        <tr>
+        <!-- <tr>
           <th>ID</th>
           <td>{{ getUserid }}</td>
         </tr>
@@ -31,23 +29,23 @@
         <tr>
           <th>PHONE</th>
           <td>{{ getUserid }}</td>
-        </tr>
-        <!-- <b-row id="rowId">
-          <b-col>아이디</b-col>
+        </tr> -->
+        <b-row id="rowId">
+          <b-col>ID</b-col>
           <b-col>{{ getUserid }}</b-col>
         </b-row>
         <b-row id="rowName">
-          <b-col>이름</b-col>
+          <b-col>NAME</b-col>
           <b-col>{{ getUsername }}</b-col>
         </b-row>
         <b-row id="rowEmail">
-          <b-col>이메일</b-col>
+          <b-col>E-MAIL</b-col>
           <b-col>{{ getUseremail }}</b-col>
         </b-row>
         <b-row id="rowPhone">
-          <b-col>휴대전화</b-col>
+          <b-col>PHONE</b-col>
           <b-col>{{ getUserphone }}</b-col>
-        </b-row> -->
+        </b-row>
       </table>
     </div>
   </div>
@@ -86,9 +84,13 @@ export default {
 }
 
 table {
-  background-color: white;
+  background-color: #fbf6f0;
+  border: 0;
 }
 tr {
   color: #707070;
+}
+td {
+  text-align: left;
 }
 </style>

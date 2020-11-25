@@ -32,5 +32,6 @@ th {
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 600;
   margin: 30px;
+  color: #2f2f2f;
 }
 </style>
