@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="currComp=='Main' ? 'main' : 'notMain'">
+  <div id="app" :class="currComp == 'Main' ? 'main' : 'notMain'">
     <homeheader :currComp="currComp"></homeheader>
     <router-view />
     <homefooter></homefooter>
@@ -15,17 +15,16 @@
 }
 
 #app.main {
-  background-color: #39BFBF;
+  background-color: #39bfbf;
 }
 
 #app.notMain {
-  background-color: #fbf6f0;
+  background-color: white;
 }
 
 #nav {
   padding: 30px;
 }
-
 
 /* #nav a.router-link-exact-active {
   color: #666666;
@@ -33,16 +32,17 @@
 </style>
 
 <script>
-import homefooter from "@/components/include/Footer.vue";
-import homeheader from "@/components/include/Header.vue";
+import homefooter from '@/components/include/Footer.vue';
+import homeheader from '@/components/include/Header.vue';
 export default {
-  components : {
-    homefooter, homeheader,
+  components: {
+    homefooter,
+    homeheader,
   },
   computed: {
-    currComp(){
-      return this.$route.name;// 현재 보여주는 화면 뭔지. (메인화면이랑 다른 화면이랑 스타일 다르게)
-    }
-  }
-}
+    currComp() {
+      return this.$route.name; // 현재 보여주는 화면 뭔지. (메인화면이랑 다른 화면이랑 스타일 다르게)
+    },
+  },
+};
 </script>

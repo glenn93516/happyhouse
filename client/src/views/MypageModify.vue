@@ -5,14 +5,17 @@
       width="300px;"
       style="margin-left:30px; margin-top:20px; margin-bottom:20px;"
     />
-    <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom:20px;">
+    <div
+      class="d-flex justify-content-center border-0"
+      style="margin-top: 20px; margin-bottom:20px;"
+    >
       <table
-        class="table"
+        class="table border-0"
         style="width: 600px; table-layout: fixed"
         id="myinfotable"
       >
         <b-row id="modify--rowId">
-          <b-col>아이디</b-col>
+          <b-col>ID</b-col>
           <b-col>
             <b-form-input
               id="modify--input-0"
@@ -21,10 +24,10 @@
               type="text"
               :placeholder="getUserid"
             ></b-form-input>
-            </b-col>
+          </b-col>
         </b-row>
         <b-row id="modify--rowName">
-          <b-col>이름</b-col>
+          <b-col>NAME</b-col>
           <b-col>
             <b-form-input
               id="modify--input-1"
@@ -35,7 +38,7 @@
           </b-col>
         </b-row>
         <b-row id="modify--rowEmail">
-          <b-col>이메일</b-col>
+          <b-col>E-MAIL</b-col>
           <b-col>
             <b-form-input
               id="modify--input-2"
@@ -46,7 +49,7 @@
           </b-col>
         </b-row>
         <b-row id="modify--rowPhone">
-          <b-col>휴대전화</b-col>
+          <b-col>PHONE</b-col>
           <b-col>
             <b-form-input
               id="modify--input-3"
@@ -69,35 +72,36 @@ export default {
   computed: {
     ...mapGetters(['getUserid', 'getUsername', 'getUseremail', 'getUserphone']),
   },
-  data(){
+  data() {
     return {
       member: {
         userid: this.$store.getters.getUserid,
         username: this.$store.getters.getUsername,
         useremail: this.$store.getters.getUseremail,
-        userphone: this.$store.getters.getUserphone
-      }
+        userphone: this.$store.getters.getUserphone,
+      },
     };
   },
   methods: {
-    modifyInfo: function(){
-      axios.put('http://localhost:8097/happyhouse/members', this.member)
+    modifyInfo: function() {
+      axios
+        .put('http://localhost:8097/happyhouse/members', this.member)
         .then(({ data }) => {
-          if(data == "success"){
-            alert("유저 정보 수정 완료");
-          } else if(data == "fail"){
-            alert("유저 정보 수정 실패");
+          if (data == 'success') {
+            alert('유저 정보 수정 완료');
+          } else if (data == 'fail') {
+            alert('유저 정보 수정 실패');
           }
           this.$router.push({
-            path: '/'
-          })
+            path: '/',
+          });
         })
         .catch((error) => {
-          alert("ERR: 유저 정보 수정 중 오류 발생");
+          alert('ERR: 유저 정보 수정 중 오류 발생');
           console.log(error);
-        })
-    }
-  }
+        });
+    },
+  },
 };
 </script>
 
@@ -112,7 +116,7 @@ export default {
 #modify--rowId,
 #modify--rowName,
 #modify--rowEmail,
-#modify--rowPhone{
+#modify--rowPhone {
   color: #707070;
   -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
   -moz-appearance: none;
@@ -125,7 +129,7 @@ export default {
 #modify--input-0,
 #modify--input-1,
 #modify--input-2,
-#modify--input-3{
+#modify--input-3 {
   width: 100%; /* 원하는 너비 설정 */
   height: 3em; /* 높이값 초기화 */
   line-height: normal; /* line-height 초기화 */
