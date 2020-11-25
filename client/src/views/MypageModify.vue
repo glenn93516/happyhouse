@@ -12,7 +12,7 @@
       <table
         class="table border-0"
         style="width: 600px; table-layout: fixed"
-        id="myinfotable"
+        id="pagemodifytable"
       >
         <b-row id="modify--rowId">
           <b-col>ID</b-col>

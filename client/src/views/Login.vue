@@ -102,8 +102,8 @@ export default {
   font-family: 'Nanum Gothic', sans-serif; /* 폰트 상속 */
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid white;
-  background-color: white;
+  border: 1px solid #f6f6f6;
+  background-color: #f6f6f6;
   border-radius: 0; /* iSO 둥근모서리 제거 */
   outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */
   -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
