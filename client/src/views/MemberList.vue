@@ -2,12 +2,12 @@
     <div id="list">
       <div class="d-flex justify-content-center">
         <input
+          id="input--search"
           v-on:keyup.enter="search"
           ref="searchBar"
           type="text"
-          style="width: 300px; margin-right: 10px"
         />
-        <b-button variant="primary" @click="search" style="margin-right: 10px">검색</b-button>
+        <b-button id="searchBtn" @click="search">검색</b-button>
       </div>
       <div class="d-flex justify-content-center" style="margin-top: 20px">
         <b-table 
@@ -15,7 +15,7 @@
           :fields="fields"
         >
         <template #cell(select)="data">
-          <b-form-checkbox>{{data}}</b-form-checkbox>
+          <b-form-checkbox v-model="selected" :value="data.item.userid"></b-form-checkbox>
         </template>
         </b-table>
       </div>
@@ -30,6 +30,7 @@ export default {
     data(){
         return {
             members: [],
+            selected: '',
             fields: [
               {key: 'userid', label:'아이디'}, 
               {key: 'userpw', label: '비밀번호'}, 
@@ -79,10 +80,41 @@ th {
   border: 1px solid #dddddd;
   text-align: center;
 }
-#deleteBtn{
-  background-color: #8d9b46;
-  text-align: right;
+#deleteBtn,
+#searchBtn{
+  width: 100px;
+  height: 3em;
+  background-color: #33b3b6;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  margin: 4px;
+  cursor: pointer;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
 }
+#input--search {
+  width: 300px;
+  height: 3em; /* 높이값 초기화 */
+  margin: 4px;
+  line-height: normal; /* line-height 초기화 */
+  padding: 0.8em 0.5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
+  font-family: 'Nanum Gothic', sans-serif; /* 폰트 상속 */
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 0; /* iSO 둥근모서리 제거 */
+  outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */
+  -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .container{
   font-family: 'Nanum Gothic', sans-serif;
 }

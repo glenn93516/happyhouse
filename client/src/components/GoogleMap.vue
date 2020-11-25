@@ -12,7 +12,7 @@
                     :clickable="true"
                     :position="{lat: parseFloat(deal.houseInfo.lat), lng: parseFloat(deal.houseInfo.lng)}" 
                     :icon="{
-                        url: require('../assets/home-solid.svg'), 
+                        url: require('../assets/mark3.png'), 
                         scaledSize: {width:30, height:30}}"
                     @click="clickMarker(deal.houseInfo.lat, deal.houseInfo.lng)"
                 >
@@ -23,7 +23,7 @@
                     :clickable="true"
                     :position="{lat: parseFloat(propDeal.houseInfo.lat), lng: parseFloat(propDeal.houseInfo.lng)}"
                     :icon="{
-                        url: require('../assets/home-solid.svg'), 
+                        url: require('../assets/mark3.png'), 
                         scaledSize: {width:30, height:30}}"
                     @click="clickMarker(propDeal.houseInfo.lat, propDeal.houseInfo.lng)"
                 >
