@@ -11,7 +11,7 @@
       </div>
       <div class="d-flex justify-content-center" style="margin-top: 20px">
         <b-table 
-          :items="members"
+          :items="idCheck"
           :fields="fields"
         >
         <template #cell(select)="data">
@@ -19,7 +19,7 @@
         </template>
         </b-table>
       </div>
-      <b-button id="deleteBtn" style="margin:20px;">계정삭제</b-button>
+      <b-button id="deleteBtn" style="margin:20px;" @click="deleteMember">계정삭제</b-button>
     </div>
 </template>
 
@@ -49,6 +49,33 @@ export default {
             this.searchCondition = this.$refs.searchBar.value;
             this.isSearch = true;
         },
+        deleteMember(){
+          axios.delete('http://localhost:8097/happyhouse/members/' + this.selected)
+            .then((response) => {
+              if(response.data == "success") {
+                alert("회원 삭제 성공");
+                
+                axios
+                  .get('http://localhost:8097/happyhouse/members')
+                  .then((response) => {
+                    console.log(response);
+                    this.members= response.data;
+                  })
+                  .catch((error) => {
+                    alert("회원 목록 가져오는 중 오류 발생");
+                    console.log(error);
+                  })
+                  .finally();
+
+              } else if(response.data == "fail"){
+                alert("회원 삭제 실패");
+              }
+            })
+            .catch((error) => {
+              alert("회원 삭제 중 오류 발생");
+              console.log(error);
+            })
+        }
     },
     computed: {
         idCheck(){
@@ -73,7 +100,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 table,
 td,
 th {

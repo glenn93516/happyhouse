@@ -15,16 +15,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 table,
 td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
-}
-#writeBtn {
-  background-color: #8d9b46;
-  text-align: right;
 }
 .container {
   font-family: 'Nanum Gothic', sans-serif;

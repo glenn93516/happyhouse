@@ -6,11 +6,11 @@
       style="margin-left:30px; margin-top:20px; margin-bottom:20px;"
     />
     <div
-      class="d-flex justify-content-center"
+      class="d-flex justify-content-center border-0"
       style="margin-top: 20px; margin-bottom: 20px;border-style:none;"
     >
       <table
-        class="table table-borderless"
+        class="table table-borderless border-0"
         style="width: 600px; table-layout: fixed;"
         id="myinfotable"
         cellspacing="0"

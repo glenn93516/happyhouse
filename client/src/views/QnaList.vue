@@ -1,5 +1,5 @@
 <template>
-  <div class="overfolw-auto">
+  <div id="qnalist--container" class="overfolw-auto">
     <div class="d-flex justify-content-center">
       <input
         v-on:keyup.enter="search"
@@ -12,39 +12,16 @@
       >
     </div>
     <div class="d-flex justify-content-center" style="margin-top: 20px">
-      <table
-        id="my-table"
-        :boards="boards"
+      <b-table
+        :items="boards"
+        :fields="fields"
         :per-page="perPage"
         :cur-page="curPage"
-        v-show="isSearch"
         style="width: 600px; table-layout: fixed"
       >
-        <thead>
-          <tr class="table-primary">
-            <th>글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일</th>
-            <th>문의유형</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(board, index) in titleCheck" :key="index">
-            <td>{{ (curPage - 1) * 10 + index + 1 }}</td>
-            <td>
-              <router-link :to="'/qna/' + board.qnaId">{{
-                board.qnaTitle
-              }}</router-link>
-            </td>
-            <td>{{ board.qnaWriter }}</td>
-            <td>{{ board.qnaWriteDate }}</td>
-            <td>{{ board.qnaType }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
+      </b-table>
+    </div>
     <b-pagination
       class="pagination"
       v-model="curPage"
@@ -56,7 +33,7 @@
     ></b-pagination>
 
     <router-link to="/qna/write"
-      ><b-button id="writeBtn" style="margin:20px;"
+      ><b-button id="writeBtn"
         >글쓰기</b-button
       ></router-link
     >
@@ -77,6 +54,13 @@ export default {
       boards: [],
       searchCondition: '',
       isSearch: true,
+      fields: [
+              {key: 'qnaId', label:'글번호'}, 
+              {key: 'qnaTitle', label: '제목', sortable: true}, 
+              {key: 'qnaWriter', label: '작성자', sortable: true}, 
+              {key: 'qnaWriteDate', label: '등록일'}, 
+              {key: 'qnaType', label: '문의유형'},
+      ],
     };
   },
   methods: {
@@ -126,25 +110,40 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#qnalist--container{
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
+  color: #707070;
+}
+
 table,
 td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
 }
-#writeBtn {
-  background-color: #8d9b46;
-  text-align: right;
+button#writeBtn {
+  width: 100px;
+  height: 3em;
+  background-color: #33b3b6;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  margin: 4px;
+  cursor: pointer;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
 }
+
 .container {
   font-family: 'Nanum Gothic', sans-serif;
 }
-/* #title{
-  font-family: 'Nanum Gothic', sans-serif;
-  font-weight: 900;
-  margin: 30px;
-} */
+
 #my-table {
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 400;
@@ -152,4 +151,5 @@ th {
 .pagination {
   margin: 30px;
 }
+
 </style>
