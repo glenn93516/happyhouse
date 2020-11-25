@@ -39,7 +39,7 @@
               }}</router-link>
             </td>
             <td>{{ board.qnaWriter }}</td>
-            <td> {{ board.qnaWriteDate }}</td>
+            <td>{{ board.qnaWriteDate }}</td>
             <td>{{ board.qnaType }}</td>
           </tr>
         </tbody>
@@ -57,9 +57,7 @@
     ></b-pagination>
 
     <router-link to="/qna/write"
-      ><b-button id="writeBtn"
-        >글쓰기</b-button
-      ></router-link
+      ><b-button id="writeBtn">글쓰기</b-button></router-link
     >
   </div>
 </template>
@@ -128,7 +126,7 @@ export default {
 </script>
 
 <style scoped>
-#qnalist--container{
+#qnalist--container {
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 600;
   color: #707070;
@@ -144,6 +142,7 @@ td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
+  font-weight: 600;
 }
 button#writeBtn,
 .searchBtn {
@@ -210,7 +209,7 @@ th {
 .pagination {
   margin: 30px;
 }
-.pagination .page-item{
+.pagination .page-item {
   color: white !important;
   background-color: #39bfbf !important;
 }

@@ -5,7 +5,7 @@
     <div style="margin-top: 20px" class="d-flex justify-content-center">
       <table class="table border-0 " style="width:70%;">
         <tr>
-          <th class="thth">글번호</th>
+          <th class="thth align-middle">글번호</th>
           <td class="tdtd">
             <input
               v-model="board.bnum"
@@ -16,7 +16,7 @@
           </td>
         </tr>
         <tr>
-          <th class="thth">제목</th>
+          <th class="thth align-middle">제목</th>
           <td class="tdtd">
             <input
               v-if="isUpdate"
@@ -34,7 +34,7 @@
           </td>
         </tr>
         <tr>
-          <th class="thth">등록일</th>
+          <th class="thth align-middle">등록일</th>
           <td class="tdtd">
             <input
               v-model="board.bwritedate"
@@ -45,7 +45,7 @@
           </td>
         </tr>
         <tr>
-          <th class="thth" align="center">
+          <th class="thth align-middle" align="center">
             내용
           </th>
           <td class="tdtd">
@@ -195,8 +195,10 @@ input.inputform {
 }
 .thth {
   background-color: #39bfbf;
+  color: white;
 }
 .tdtd {
   background-color: #f6f6f6;
+  color: #2f2f2f;
 }
 </style>
