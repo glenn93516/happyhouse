@@ -29,8 +29,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="board in titleCheck" :key="board.bnum">
-            <td>{{ board.bnum }}</td>
+          <tr v-for="(board, index) in titleCheck" :key="index">
+            <td>{{ (curPage - 1) * 10 + index + 1 }}</td>
             <td>
               <router-link :to="'/board/' + board.bnum">{{
                 board.btitle

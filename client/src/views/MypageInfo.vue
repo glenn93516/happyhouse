@@ -5,28 +5,49 @@
       width="300px;"
       style="margin-left:30px; margin-top:20px; margin-bottom:20px;"
     />
-    <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px">
+    <div
+      class="d-flex justify-content-center"
+      style="margin-top: 20px; margin-bottom: 20px;border-style:none;"
+    >
       <table
-        class="table border-1"
-        style="width: 600px; table-layout: fixed"
+        class="table table-borderless"
+        style="width: 600px; table-layout: fixed;"
         id="myinfotable"
+        cellspacing="0"
+        cellpadding="0"
       >
-        <b-row id="rowId">
+        <tr>
+          <th>ID</th>
+          <td>{{ getUserid }}</td>
+        </tr>
+        <tr>
+          <th>NAME</th>
+          <td>{{ getUsername }}</td>
+        </tr>
+        <tr>
+          <th>E-MAIL</th>
+          <td>{{ getUseremail }}</td>
+        </tr>
+        <tr>
+          <th>PHONE</th>
+          <td>{{ getUserid }}</td>
+        </tr>
+        <!-- <b-row id="rowId">
           <b-col>아이디</b-col>
-          <b-col>{{getUserid}}</b-col>
+          <b-col>{{ getUserid }}</b-col>
         </b-row>
         <b-row id="rowName">
           <b-col>이름</b-col>
-          <b-col>{{getUsername}}</b-col>
+          <b-col>{{ getUsername }}</b-col>
         </b-row>
         <b-row id="rowEmail">
           <b-col>이메일</b-col>
-          <b-col>{{getUseremail}}</b-col>
+          <b-col>{{ getUseremail }}</b-col>
         </b-row>
         <b-row id="rowPhone">
           <b-col>휴대전화</b-col>
-          <b-col>{{getUserphone}}</b-col>
-        </b-row>
+          <b-col>{{ getUserphone }}</b-col>
+        </b-row> -->
       </table>
     </div>
   </div>
@@ -43,7 +64,7 @@ export default {
 </script>
 
 <style>
-#mypageInfo__container{
+#mypageInfo__container {
   color: #707070;
   font-family: 'Nanum Gothic', sans-serif; /* 폰트 상속 */
   font-size: 20px;
@@ -62,5 +83,12 @@ export default {
   padding: 0.8em 0.5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
   background-color: #fbf6f0;
   border-radius: 0; /* iSO 둥근모서리 제거 */
+}
+
+table {
+  background-color: white;
+}
+tr {
+  color: #707070;
 }
 </style>

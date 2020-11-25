@@ -30,8 +30,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="board in titleCheck" :key="board.qnaId">
-            <td>{{ board.qnaId }}</td>
+          <tr v-for="(board, index) in titleCheck" :key="index">
+            <td>{{ (curPage - 1) * 10 + index + 1 }}</td>
             <td>
               <router-link :to="'/qna/' + board.qnaId">{{
                 board.qnaTitle
