@@ -2,7 +2,12 @@
   <b-container style="width:300px;" class="container mt-5">
     <h1 class="titlejoin" style="margin:30px;">Sign Up</h1>
     <hr />
-    <b-form class="joinform" @submit.prevent="onSubmit" @reset="onReset" v-if="show">
+    <b-form
+      class="joinform"
+      @submit.prevent="onSubmit"
+      @reset="onReset"
+      v-if="show"
+    >
       <b-form-group>
         <b-form-input
           id="input-1"
@@ -16,26 +21,26 @@
       <b-form-group>
         <b-form-input
           id="input-2"
-          v-model="form.userpwd"
+          v-model="form.userpw"
           type="text"
           required
           placeholder="PW"
         ></b-form-input>
       </b-form-group>
-
+      <!-- 
       <b-form-group>
         <b-form-input
           id="input-3"
-          v-model="form.userpwdagain"
+          v-model="form.userpwagain"
           type="text"
           required
           placeholder="PW CHECK"
         ></b-form-input>
-      </b-form-group>
+      </b-form-group> -->
 
       <b-form-group>
         <b-form-input
-          id="input-4"
+          id="input-3"
           v-model="form.useremail"
           required
           type="email"
@@ -45,7 +50,7 @@
 
       <b-form-group>
         <b-form-input
-          id="input-5"
+          id="input-4"
           v-model="form.username"
           required
           type="text"
@@ -55,7 +60,7 @@
 
       <b-form-group>
         <b-form-input
-          id="input-6"
+          id="input-5"
           v-model="form.userphone"
           required
           type="tel"
@@ -110,8 +115,8 @@ export default {
       event.preventDefault();
       // Reset our form values
       this.form.userid = '';
-      this.form.userpwd = '';
-      this.form.userpwdagain = '';
+      this.form.userpw = '';
+      // this.form.userpwdagain = '';
       this.form.useremail = '';
       this.form.username = '';
       this.form.userphone = '';
@@ -122,9 +127,7 @@ export default {
       });
     },
   },
-  created() {
-    
-  },
+  created() {},
 };
 </script>
 
@@ -159,8 +162,7 @@ export default {
 #input-2,
 #input-3,
 #input-4,
-#input-5,
-#input-6 {
+#input-5 {
   width: 100%; /* 원하는 너비 설정 */
   height: 3em; /* 높이값 초기화 */
   line-height: normal; /* line-height 초기화 */
@@ -168,8 +170,8 @@ export default {
   font-family: 'Nanum Gothic', sans-serif; /* 폰트 상속 */
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid white;
-  background-color: white;
+  border: 1px solid #f6f6f6;
+  background-color: #f6f6f6;
   border-radius: 0; /* iSO 둥근모서리 제거 */
   outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */
   -webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
