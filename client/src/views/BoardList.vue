@@ -31,13 +31,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(board, index) in titleCheck" :key="index">
+          <tr
+            style="cursor:pointer"
+            v-for="(board, index) in titleCheck"
+            :key="index"
+            @click="moveDetail(board.bnum)"
+          >
             <td>{{ (curPage - 1) * 10 + index + 1 }}</td>
-            <td>
-              <router-link :to="'/board/' + board.bnum">{{
-                board.btitle
-              }}</router-link>
-            </td>
+            <td>{{ board.btitle }}</td>
             <td>{{ board.bwritedate }}</td>
           </tr>
         </tbody>
@@ -95,6 +96,10 @@ export default {
         .catch()
         .finally();
     },
+    moveDetail(bnum) {
+      console.log(bnum);
+      this.$router.push('/board/' + bnum);
+    },
   },
   computed: {
     titleCheck() {
@@ -127,6 +132,7 @@ td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
+  font-weight: 600;
 }
 button#writeBtn,
 .searchBtn {

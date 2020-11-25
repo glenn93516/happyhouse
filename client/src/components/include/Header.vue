@@ -134,7 +134,7 @@ export default {
 }
 .nav-item.notMain.active,
 .nav-item.notMain.active a {
-  color: #fbf6f0;
+  color: white;
   background-color: #39bfbf;
   transition: all 500ms ease-in-out;
 }
