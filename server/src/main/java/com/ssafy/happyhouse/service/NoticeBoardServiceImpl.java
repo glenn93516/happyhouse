@@ -46,8 +46,6 @@ public class NoticeBoardServiceImpl implements BoardService{
 
     @Override
     public boolean writeNotice(NoticeDto dto, HttpSession session) {
-        MemberDto member = (MemberDto) session.getAttribute("loginInfo");
-        dto.setuserid(member.getUserid());
         dto.setbread_cnt(0);
 
         return noticeMapper.write(dto) == 1;
@@ -61,8 +59,6 @@ public class NoticeBoardServiceImpl implements BoardService{
 
     @Override
     public boolean updateNotice(NoticeDto dto, HttpSession session) {
-        MemberDto member = (MemberDto) session.getAttribute("loginInfo");
-        dto.setuserid(member.getUserid());
         dto.setbread_cnt(0);
 
         return noticeMapper.update(dto) == 1;
