@@ -46,7 +46,7 @@ export default {
     return {
       board : {
         btitle: '',
-        bwriter: '관리자',
+        userid: this.$store.getters.getUserid,
         bwritedate: '',
         bcontent: '',
       }

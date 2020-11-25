@@ -1,15 +1,21 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <div style="margin-top: 20px" class="d-flex justify-content-center">
-      <table style="width:70%;">
+      <table class="table border-0 " style="width:70%;">
         <tr>
-          <td>제목</td>
-          <td><b-form-input v-model="board.qnaTitle" type="text" /></td>
+          <th class="thth align-middle">제목</th>
+          <td class="tdtd">
+            <input
+              v-model="board.qnaTitle"
+              class="inputform"
+              type="text"
+            />
+          </td>
         </tr>
         <tr>
-          <td>문의유형</td>
-          <td>
-            <b-form-select v-model="board.qnaType">
+          <th class="thth align-middle">문의유형</th>
+          <td class="tdtd">
+            <b-form-select class="inputform" v-model="board.qnaType">
               <option value="1">회원정보</option>
               <option value="2">매물등록</option>
               <option value="3">허위매물신고</option>
@@ -18,14 +24,27 @@
           </td>
         </tr>
         <tr>
-          <td>내용</td>
-          <td><b-form-input style="height:200px;" v-model="board.qnaContent" type="text" /></td>
+          <th class="thth align-middle" align="center">
+            내용
+          </th>
+          <td class="tdtd">
+            <input
+              class="inputform"
+              style="height:200px;"
+              v-model="board.qnaContent"
+              type="text"
+            />
+          </td>
         </tr>
       </table>
     </div>
-    <div class="d-flex justify-content-center" style="margin-top: 10px">
-      <b-button variant="primary" @click="add">글쓰기</b-button>
-      <b-button variant="danger" @click="cancel">취소</b-button>
+    <div>
+      <button @click="add" id="addBtn" style="margin:20px;">
+        글쓰기
+      </button>
+      <router-link to="/qna"
+        ><button id="listBtn" style="margin:20px;">취소</button></router-link
+      >
     </div>
   </div>
 </template>
@@ -40,7 +59,7 @@ export default {
       //   qna_id: '',
       //   qna_writedate: '',
         qnaTitle: '',
-        qnaWriter: 'ssafy',
+        qnaWriter: this.$store.getters.getUserid,
         qnaContent: '',
         qnaType: '',
       }
@@ -62,9 +81,6 @@ export default {
           console.log(error);
         })
         .finally();
-    },
-    cancel(){
-      
     }
   },
 };

@@ -123,7 +123,7 @@ export default {
   height: 3em; /* 높이값 초기화 */
   line-height: normal; /* line-height 초기화 */
   padding: 0.8em 0.5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
-  background-color: #fbf6f0;
+  background-color: #f6f6f6;
   border-radius: 0; /* iSO 둥근모서리 제거 */
 }
 #modify--input-0,
