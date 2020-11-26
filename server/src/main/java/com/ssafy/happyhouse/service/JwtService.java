@@ -2,7 +2,6 @@ package com.ssafy.happyhouse.service;
 
 import com.ssafy.happyhouse.repository.dto.MemberDto;
 import io.jsonwebtoken.*;
-import org.apache.jasper.tagplugins.jstl.core.Catch;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

@@ -27,7 +27,6 @@ import BoardList from "../views/BoardList.vue";
 import BoardWrite from "../views/BoardWrite.vue";
 
 // 뉴스
-import News from "../views/News.vue";
 import NewsList from "../views/NewsList.vue";
 
 // 로그인, 회원 가입
@@ -69,12 +68,6 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
-  },
-  // 뉴스 게시판
-  {
-    path: '/news',
-    name: 'News',
-    component: News
   },
   // 검색 페이지
   {
@@ -172,14 +165,6 @@ const routes = [
     path: '/newslist',
     name: 'NewsList',
     component: NewsList,
-    children: [
-      {
-        // 뉴스 디테일
-        path: '/news',
-        name: 'NewsList',
-        component: News,
-      }
-    ]
   },
   // 마이 페이지
   {
