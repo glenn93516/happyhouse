@@ -27,7 +27,9 @@
         </b-form-invalid-feedback>
       </b-form-group>
       <button class="login-btn" type="submit">Login</button>
-      <button class="findpw-btn" type="submit">Find PW</button>
+      <router-link to="/join"
+        ><button class="findpw-btn" type="submit">Join</button></router-link
+      >
     </b-form>
   </b-container>
 </template>

@@ -62,6 +62,9 @@
       </table>
     </div>
     <button @click="modifyInfo" class="modify-btn mb-4">수정</button>
+    <router-link to="/"
+      ><button class="modify-btn mb-4">취소</button></router-link
+    >
   </div>
 </template>
 
